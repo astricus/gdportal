@@ -1,0 +1,214 @@
+.big-calendar-header {
+    margin-bottom: 1em;
+  }
+  
+  .rbc-month-header {
+    min-height: 50px;
+  }
+  
+  .rbc-today {
+    background: initial;
+  }
+  
+  .calendar-prev-btn,
+  .calendar-next-btn {
+    outline: initial !important;
+    box-shadow: initial !important;
+    border-radius: 40px !important;
+    text-align: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0.55rem 0;
+    background: $theme-color-1;
+    color: $foreground-color;
+    border: 1px solid $theme-color-1;
+    line-height: 0.9 !important;
+    font-size: 0.76rem;
+    font-weight: normal !important;
+  
+    span {
+      line-height: 1 !important;
+      font-size: 0.76rem;
+      font-weight: normal !important;
+    }
+  
+    &:hover {
+      background-color: transparent;
+      border-color: lighten($theme-color-1, 10%);
+      color: $theme-color-1;
+    }
+  }
+  
+  .calendar-prev-btn {
+    margin-right: 5px;
+  }
+  
+  .calendar-today-btn {
+    padding: 0.4em 1.3em !important;
+    height: unset !important;
+  }
+  
+  .rbc-month-row {
+    min-height: 5em;
+    z-index: 1;
+  
+    @include respond-below(xs) {
+      min-height: 3em;
+    }
+  }
+  
+  .rbc-month-view {
+    border: initial;
+  }
+  
+  .rbc-off-range-bg {
+    background: initial;
+  }
+  
+  .rbc-off-range {
+    color: $primary-color;
+    opacity: 0.3;
+  }
+  
+  .rbc-day-bg + .rbc-day-bg,
+  .rbc-month-row + .rbc-month-row,
+  .rbc-header + .rbc-header,
+  .rbc-header {
+    border-color: $separator-color-light !important;
+  }
+  
+  .rbc-header {
+    padding: 15px 5px;
+    color: $theme-color-1;
+  }
+  
+  .rbc-date-cell {
+    padding: 10px;
+  
+    a {
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      vertical-align: middle;
+      padding: 5px;
+      font-weight: initial;
+      display: inline-block;
+    }
+  }
+  
+  .rbc-date-cell.rbc-now a {
+    background: $theme-color-1;
+    color: $foreground-color;
+  }
+  
+  .rbc-event {
+    font-size: 0.85em;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0px 5px;
+    background: $theme-color-2;
+  }
+  
+  .fc-basic-view .fc-body .fc-row {
+    min-height: 6em;
+  
+    @include respond-below(xs) {
+      min-height: 3em;
+    }
+  }
+  
+  .fc-bootstrap4 .fc-day-top .fc-day-number {
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+  }
+  
+  .fc-bootstrap4 td.fc-today {
+    background: initial;
+  
+    .fc-day-number {
+      background: $theme-color-1;
+      color: $button-text-color;
+    }
+  }
+  
+  .fc-day-grid-container {
+    height: 100%;
+    overflow: visible;
+  }
+  
+  .fc-row .fc-content-skeleton td,
+  .fc-row .fc-helper-skeleton td {
+    padding: 5px;
+  }
+  
+  .fc-view,
+  .fc-view > table {
+    border-top: initial;
+  }
+  
+  .fc table {
+    border: initial;
+  }
+  
+  .fc .table-bordered thead th,
+  .fc .table-bordered thead td {
+    border-top: initial;
+    border-bottom: initial;
+    border-left: initial;
+  }
+  
+  .fc td:first-of-type,
+  .fc th:first-of-type {
+    border-left: initial;
+    border-bottom: initial;
+  }
+  
+  .fc td:last-of-type,
+  .fc th:last-of-type {
+    border-right: initial;
+    border-bottom: initial;
+  }
+  
+  .fc-body .fc-row:last-of-type td {
+    border-bottom: initial;
+  }
+  
+  .fc tbody > tr > td.fc-widget-content:first-of-type {
+    border-left: initial;
+    border-right: initial;
+    border-bottom: initial;
+  }
+  
+  .fc table,
+  .fc .table-bordered th,
+  .fc .table-bordered td {
+    border-color: $separator-color-light !important;
+  }
+  
+  .fc-day-header {
+    color: $theme-color-1;
+  
+    span {
+      padding: 10px;
+      display: inline-block;
+    }
+  }
+  
+  .fc-event {
+    border: initial;
+  }
+  
+  .fc-event,
+  .fc-event-dot {
+    background-color: $theme-color-2;
+    color: $button-text-color !important;
+    padding: 1px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+  }

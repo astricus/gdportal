@@ -1,0 +1,66 @@
+.ReactTable {
+    border: initial;
+  
+    .scrollbar-container {
+      margin: initial;
+      padding: initial;
+    }
+  
+    .rt-thead.-filters input {
+      border-radius: $border-radius;
+      outline: initial !important;
+      box-shadow: initial !important;
+      font-size: 0.8rem;
+      padding: 0.7rem 0.75rem 0.65rem 0.75rem;
+      line-height: 1.5;
+      border: 1px solid $separator-color;
+      background: $input-background;
+      color: $primary-color;
+    }
+  }
+  
+  .ReactTable .rt-th,
+  .ReactTable .rt-td {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .react-table-fixed-height {
+    height: 500px;
+  }
+  
+  .ReactTable .rt-thead.-header {
+    box-shadow: initial;
+  }
+  
+  .ReactTable .rt-thead .rt-th,
+  .ReactTable .rt-thead .rt-td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: initial;
+    border: initial;
+    text-align: left;
+    font-weight: 700;
+  }
+  
+  .ReactTable .rt-tbody .rt-tr-group {
+    border-bottom: 1px solid $separator-color-light;
+  }
+  
+  .ReactTable .list-item-heading {
+    margin-bottom: 0;
+  }
+  
+  .ReactTable .rt-tbody .rt-td {
+    border-right: initial;
+  }
+  
+  .ReactTable .rt-thead .rt-th.-sort-desc,
+  .ReactTable .rt-thead .rt-td.-sort-desc {
+    box-shadow: inset 0 -3px 0 0 $theme-color-1;
+  }
+  
+  .ReactTable .rt-thead .rt-th.-sort-asc,
+  .ReactTable .rt-thead .rt-td.-sort-asc {
+    box-shadow: inset 0 3px 0 0 $theme-color-1;
+  }

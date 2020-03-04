@@ -1,0 +1,123 @@
+.alert {
+    border-radius: 0;
+  }
+  
+  .alert-primary {
+    color: $theme-color-1;
+    background-color: rgba($theme-color-1, 0.2);
+    border-color: rgba($theme-color-1, 0.1);
+  }
+  
+  .alert-secondary {
+    color: $theme-color-2;
+    background-color: rgba($theme-color-2, 0.2);
+    border-color: rgba($theme-color-2, 0.1);
+  }
+  
+  .alert-success {
+    color: $success-color;
+    background-color: rgba($success-color, 0.2);
+    border-color: rgba($success-color, 0.1);
+  }
+  
+  .alert-info {
+    color: $info-color;
+    background-color: rgba($info-color, 0.2);
+    border-color: rgba($info-color, 0.1);
+  }
+  
+  .alert-warning {
+    color: $warning-color;
+    background-color: rgba($warning-color, 0.2);
+    border-color: rgba($warning-color, 0.1);
+  }
+  
+  .alert-danger {
+    color: $error-color;
+    background-color: rgba($error-color, 0.2);
+    border-color: rgba($error-color, 0.1);
+  }
+  
+  .alert-light {
+    color: $light-btn-background;
+    background-color: rgba($light-btn-background, 0.2);
+    border-color: rgba($light-btn-background, 0.1);
+  }
+  
+  .alert-dark {
+    color: $dark-btn-background;
+    background-color: rgba($dark-btn-background, 0.2);
+    border-color: rgba($dark-btn-background, 0.1);
+  }
+  
+  .alert-dismissible .close {
+    text-shadow: initial;
+  }
+  
+  .alert *[data-notify="title"] {
+    display: block;
+    font-size: 0.9rem;
+  }
+  
+  div[data-notify="container"] {
+    padding: 18px;
+  }
+  
+  .notification-container {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999;
+    width: 320px;
+    padding: 0px 15px;
+    max-height: calc(100% - 30px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .notification {
+    box-sizing: border-box;
+    padding: 15px 15px 15px 58px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1.2em;
+    position: relative;
+    opacity: 0.9;
+    margin-top: 15px;
+  }
+  
+  .notification .title {
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+  }
+  
+  .notification:hover,
+  .notification:focus {
+    opacity: 1;
+  }
+  
+  .notification-enter {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+  }
+  
+  .notification-enter.notification-enter-active {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.4s;
+  }
+  
+  .notification-leave {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .notification-leave.notification-leave-active {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+    transition: all 0.4s;
+  }

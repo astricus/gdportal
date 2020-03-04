@@ -1,0 +1,202 @@
+.dashboard-line-chart {
+    height: 283px;
+  }
+  
+  .dashboard-quick-post {
+    min-height: 263px;
+  }
+  
+  .dashboard-list-with-thumbs {
+    height: 500px;
+  }
+  
+  .dashboard-logs {
+    height: 270px;
+  }
+  
+  .dashboard-list-with-user {
+    height: 270px;
+  }
+  
+  .dashboard-donut-chart {
+    height: 270px;
+  }
+  
+  .dashboard-small-chart {
+    height: 150px;
+  
+    .chart {
+      height: 55px;
+    }
+  
+    .lead {
+      font-size: 1.4rem;
+    }
+  }
+  
+  .dashboard-small-chart-analytics {
+    height: 180px;
+  
+    .chart {
+      height: 85px;
+    }
+  
+    .lead {
+      font-size: 1.4rem;
+    }
+  }
+  
+  .dashboard-filled-line-chart {
+    height: 340px;
+  
+    .chart {
+      height: 200px;
+    }
+  }
+  
+  .dashboard-sq-banner {
+    background-image: linear-gradient(to right top, $gradient-color-2, $gradient-color-3, $gradient-color-1);
+    background-size: cover;
+    height: 385px;
+    transition: 0.5s;
+    background-size: 350% auto;
+    cursor: pointer;
+  
+    .card-body {
+      width: 270px;
+    }
+  
+    .lead {
+      line-height: 2.3rem;
+    }
+  
+    &:hover {
+      background-position: right top;
+    }
+  }
+  
+  .dashboard-link-list {
+    height: 385px;
+  }
+  
+  .dashboard-progress {
+    height: 385px;
+  }
+  
+  .dashboard-top-rated {
+    height: 300px;
+  
+    @include respond-below(md) {
+      height: unset;
+    }
+  
+    .glide {
+      // margin-right: -0.5rem;
+      // margin-left: -0.5rem;
+  
+      img {
+        height: 120px;
+        display: flex;
+        object-fit: cover;
+        width: 100%;
+      }
+      .react-rater {
+        display: inline-block !important;
+      }
+    }
+  }
+  
+  .dashboard-search {
+    height: 650px;
+    background: url(/assets/img/plane.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: $foreground-color;
+  
+    .card-body {
+      padding: 120px 50px 30px 50px;
+  
+      @include respond-below(xl) {
+        padding: 80px 30px 30px 30px;
+      }
+    }
+  
+    .form-container {
+      height: 400px;
+      border-radius: $border-radius;
+      box-shadow: 0px -10px 15px 0px rgba(0, 0, 0, 0.04);
+      padding: 2rem;
+      background-color: $foreground-color;
+    }
+  }
+  
+  .icon-cards-row {
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: -10px;
+  
+    .glide__slides {
+      padding-bottom: 0px;
+      padding-top: 10px;
+  
+      .icon-row-item {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+  
+    [class*="col-"] {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  
+    .card-body {
+      padding: 2rem 0.5rem;
+    }
+  
+    .card-text {
+      color: $secondary-color;
+      height: 30px;
+      line-height: 26px;
+    }
+  
+    .lead {
+      color: $theme-color-1;
+      margin-bottom: 0;
+    }
+  
+    i {
+      font-size: 46px;
+      line-height: 66px;
+      color: $theme-color-1;
+    }
+  
+    .card {
+      transition: box-shadow $animation-time-long;
+      cursor: pointer;
+    }
+  
+    @include respond-below(xl) {
+      .card-text {
+        height: 48px;
+        line-height: 18px;
+      }
+  
+      .lead {
+        font-size: 1.6rem;
+      }
+  
+      i {
+        font-size: 32px;
+        line-height: 47px;
+      }
+    }
+  }
+  
+  .log-indicator {
+    width: 13px;
+    height: 13px;
+    border: 2px solid $theme-color-1;
+    border-radius: 14px;
+    display: inline-block;
+  }

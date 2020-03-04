@@ -1,0 +1,90 @@
+body {
+    font-family: "Nunito", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: $primary-color;
+  }
+  
+  .rtl * {
+    text-align: right;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    padding-bottom: 10px;
+    display: inline-block;
+  
+    @include respond-below(sm) {
+      font-size: 1.3rem;
+      padding-top: 0.5rem;
+    }
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  
+    @include respond-below(sm) {
+      font-size: 1.1rem;
+    }
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  
+    @include respond-below(sm) {
+      font-size: 1rem;
+    }
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  
+    @include respond-below(sm) {
+      font-size: 1rem;
+    }
+  }
+  
+  h4 {
+    font-size: 1.15rem;
+  
+    @include respond-below(sm) {
+      font-size: 0.9rem;
+    }
+  }
+  
+  h5 {
+    font-size: 1.1rem;
+  
+    @include respond-below(sm) {
+      font-size: 0.9rem;
+    }
+  }
+  
+  h6 {
+    font-size: 1rem;
+  
+    @include respond-below(sm) {
+      font-size: 0.85rem;
+    }
+  }
+  
+  hr {
+    border-top: 1px solid $separator-color;
+  }
+  
+  .disable-text-selection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  ::selection {
+    background: lighten($theme-color-3, 20%);
+  }
+  
+  ::-moz-selection {
+    background: lighten($theme-color-3, 20%);
+  }

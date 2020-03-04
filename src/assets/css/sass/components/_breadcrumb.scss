@@ -1,0 +1,16 @@
+.breadcrumb-container {
+    .breadcrumb {
+      @include respond-below(md) {
+        padding: 0;
+      }
+    }
+  }
+  
+  .breadcrumb {
+    background-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "|";
+  }

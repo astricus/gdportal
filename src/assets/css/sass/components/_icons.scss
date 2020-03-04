@@ -1,0 +1,116 @@
+.simple-line-icons .glyph,
+.mind-icons .glyph {
+  width: 14.28%;
+  text-align: center !important;
+  float: left;
+  height: 100px;
+
+  .glyph-icon,
+  .fa {
+    font-size: 32px;
+    text-align: center !important;
+  }
+
+  .author-name {
+    display: none;
+  }
+
+  .class-name {
+    font-size: 0.76rem;
+    color: $muted-color !important;
+    text-align: center !important;
+  }
+
+  @include respond-below(lg) {
+    width: 16.66%;
+  }
+
+  @include respond-below(md) {
+    width: 20%;
+  }
+
+  @include respond-below(sm) {
+    width: 25%;
+  }
+
+  @include respond-below(xs) {
+    width: 50%;
+  }
+}
+
+.chart-container {
+  height: 300px;
+}
+
+.theme-colors {
+  width: 280px;
+  position: fixed;
+  z-index: 1030;
+  top: 50%;
+  right: 0;
+  background: $foreground-color;
+  @include depth(1);
+  transform: translate(280px, -50%);
+  transition: transform 0.4s ease-out;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .theme-button {
+    position: absolute;
+    left: -34px;
+    background: $foreground-color;
+    padding: 13px 7px 13px 7px;
+    border-radius: 0.2rem;
+    color: $primary-color;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.04);
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $theme-color-1;
+  }
+
+  .theme-color {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    border-radius: 20px;
+    transition: background 0.25s;
+
+    &.active,
+    &:hover {
+      background: $foreground-color;
+    }
+    span {
+      display: none;
+    }
+  }
+
+  .theme-color-purple {
+    border: 3px solid $theme-color-purple;
+    background: $theme-color-purple;
+  }
+
+  .theme-color-blue {
+    border: 3px solid $theme-color-blue;
+    background: $theme-color-blue;
+  }
+
+  .theme-color-orange {
+    border: 3px solid $theme-color-orange;
+    background: $theme-color-orange;
+  }
+
+  .theme-color-green {
+    border: 3px solid $theme-color-green;
+    background: $theme-color-green;
+  }
+
+  .theme-color-red {
+    border: 3px solid $theme-color-red;
+    background: $theme-color-red;
+  }
+
+  &.shown {
+    transform: translate(0, -50%);
+  }
+}

@@ -1,0 +1,20 @@
+.table th,
+.table td {
+  border-color: $separator-color-light !important;
+}
+
+.table .thead-light th {
+  background-color: $separator-color-light !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: $separator-color-light !important;
+}
+
+.feature-row {
+  margin-top: 80px;
+
+  @include respond-below(sm) {
+    margin-top: 40px;
+  }
+}
