@@ -15,11 +15,11 @@ class AppLayout extends Component {
                 <MapData />
                 <TopNav history={this.props.history} />
                 <Sidebar />
-                <main>
-                    <div className="container-fluid">
+                {/* <main> */}
+                    {/* <div className="container-fluid"> */}
                         {this.props.children}
-                    </div>
-                </main>
+                    {/* </div> */}
+                {/* </main> */}
             </div>
         );
     }
