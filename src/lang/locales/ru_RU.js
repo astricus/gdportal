@@ -44,7 +44,7 @@ module.exports = {
     "menu.blank-page": "Пустая страница",
   
    /* 04.Error Page */
-   "pages.error-title": "Ууупс... кажется возникла ошибка!",
+   "pages.error-title": "Ошибка, страница не найдена",
    "pages.error-code": "Код ошибки",
    "pages.go-back-home": "Вернуться на главную",
   };
