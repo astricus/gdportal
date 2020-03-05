@@ -203,6 +203,8 @@ class TopNav extends Component {
         return (
             <nav className="navbar fixed-top">
                 <div className="d-flex align-items-center navbar-left">
+
+                    {/* Гамбургер */}
                     <NavLink
                         to="#"
                         className="menu-button d-none d-md-block"
@@ -212,6 +214,7 @@ class TopNav extends Component {
                     >
                         <MenuIcon />
                     </NavLink>
+                    
                     <NavLink
                         to="#"
                         className="menu-button-mobile d-xs-block d-sm-block d-md-none"

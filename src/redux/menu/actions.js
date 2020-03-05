@@ -34,6 +34,16 @@ export const addContainerClassname = (classname, strCurrentClasses) => {
     )
 }
 
+export const removeContainerClassname = (classname, strCurrentClasses) => {
+    const newClasses = strCurrentClasses.indexOf(classname) > -1 ? strCurrentClasses.split(' ').filter(x => x !== '' && x !== classname).join(' ') : strCurrentClasses;
+    return (
+        {
+            type: MENU_CONTAINER_ADD_CLASSNAME,
+            payload: newClasses
+        }
+    )
+}
+
 export const clickOnMobileMenu = (strCurrentClasses) => {
     const currentClasses = strCurrentClasses ? strCurrentClasses.split(' ').filter(x => x !== '' && x !== 'sub-show-temporary') : '';
     let nextClasses = '';

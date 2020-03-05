@@ -12,6 +12,7 @@ import IntlMessages from '../../helpers/IntlMessages';
 import {
     setContainerClassnames,
     addContainerClassname,
+    removeContainerClassname,
     changeDefaultClassnames,
     changeSelectedMenuHasSubItems
 } from '../../redux/actions';
@@ -260,7 +261,7 @@ class Sidebar extends Component {
         window.removeEventListener('resize', this.handleWindowResize);
     }
 
-    openSubMenu = (e, menuItem) => {
+    toggleSubMenu = (e, menuItem) => {
         const selectedParent = menuItem.id;
         const hasSubMenu = menuItem.subs && menuItem.subs.length > 0;
         this.props.changeSelectedMenuHasSubItems(hasSubMenu);
@@ -277,27 +278,35 @@ class Sidebar extends Component {
             const currentClasses = containerClassnames
                 ? containerClassnames.split(' ').filter(x => x !== '')
                 : '';
-
-            if (!currentClasses.includes('menu-mobile')) {
-                if (
-                    currentClasses.includes('menu-sub-hidden') &&
-                    (menuClickCount === 2 || menuClickCount === 0)
-                ) {
-                    this.props.setContainerClassnames(3, containerClassnames, hasSubMenu);
-                } else if (
-                    currentClasses.includes('menu-hidden') &&
-                    (menuClickCount === 1 || menuClickCount === 3)
-                ) {
-                    this.props.setContainerClassnames(2, containerClassnames, hasSubMenu);
-                } else if (
-                    currentClasses.includes('menu-default') &&
-                    !currentClasses.includes('menu-sub-hidden') &&
-                    (menuClickCount === 1 || menuClickCount === 3)
-                ) {
-                    this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
+            if (!currentClasses.includes('sub-show-temporary')) {
+                if (!currentClasses.includes('menu-mobile')) {
+                    if (
+                        currentClasses.includes('menu-sub-hidden') &&
+                        (menuClickCount === 2 || menuClickCount === 0)
+                    ) {
+                        this.props.setContainerClassnames(3, containerClassnames, hasSubMenu);
+                    } else if (
+                        currentClasses.includes('menu-hidden') &&
+                        (menuClickCount === 1 || menuClickCount === 3)
+                    ) {
+                        this.props.setContainerClassnames(2, containerClassnames, hasSubMenu);
+                    } else if (
+                        currentClasses.includes('menu-default') &&
+                        !currentClasses.includes('menu-sub-hidden') &&
+                        (menuClickCount === 1 || menuClickCount === 3)
+                    ) {
+                        this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
+                    }
+                } else {
+                    this.props.addContainerClassname(
+                        'sub-show-temporary',
+                        containerClassnames
+                    );
                 }
-            } else {
-                this.props.addContainerClassname(
+            }
+            else
+            {
+                this.props.removeContainerClassname(
                     'sub-show-temporary',
                     containerClassnames
                 );
@@ -363,7 +372,7 @@ class Sidebar extends Component {
                                                 ) : (
                                                         <NavLink
                                                             to={item.to}
-                                                            onClick={e => this.openSubMenu(e, item)}
+                                                            onClick={e => this.toggleSubMenu(e, item)}
                                                             data-flag={item.id}
                                                         >
                                                             <i className={item.icon} />{' '}
@@ -440,7 +449,7 @@ class Sidebar extends Component {
                                                                         <i className="simple-icon-arrow-down" />{' '}
                                                                         <IntlMessages id={sub.label} />
                                                                     </NavLink>
-                                                                
+
 
                                                                     <Collapse
                                                                         isOpen={
@@ -528,6 +537,7 @@ export default withRouter(
         {
             setContainerClassnames,
             addContainerClassname,
+            removeContainerClassname,
             changeDefaultClassnames,
             changeSelectedMenuHasSubItems
         }
