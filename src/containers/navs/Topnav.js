@@ -214,7 +214,7 @@ class TopNav extends Component {
                     >
                         <MenuIcon />
                     </NavLink>
-                    
+
                     <NavLink
                         to="#"
                         className="menu-button-mobile d-xs-block d-sm-block d-md-none"
@@ -280,7 +280,7 @@ class TopNav extends Component {
                 </div>
 
                 {/* Логотип */}
-                <a className="navbar-logo" href="/">
+                <a className="navbar-logo" href="#">
                     <span className="logo d-none d-xs-block" />
                     <span className="logo-mobile d-block d-xs-none" />
                 </a>

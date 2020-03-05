@@ -262,6 +262,7 @@ class Sidebar extends Component {
     }
 
     toggleSubMenu = (e, menuItem) => {
+        console.log(this.state.selectedParentMenu);
         const selectedParent = menuItem.id;
         const hasSubMenu = menuItem.subs && menuItem.subs.length > 0;
         this.props.changeSelectedMenuHasSubItems(hasSubMenu);
@@ -278,42 +279,50 @@ class Sidebar extends Component {
             const currentClasses = containerClassnames
                 ? containerClassnames.split(' ').filter(x => x !== '')
                 : '';
-            if (!currentClasses.includes('sub-show-temporary')) {
-                if (!currentClasses.includes('menu-mobile')) {
-                    if (
-                        currentClasses.includes('menu-sub-hidden') &&
-                        (menuClickCount === 2 || menuClickCount === 0)
-                    ) {
-                        this.props.setContainerClassnames(3, containerClassnames, hasSubMenu);
-                    } else if (
-                        currentClasses.includes('menu-hidden') &&
-                        (menuClickCount === 1 || menuClickCount === 3)
-                    ) {
-                        this.props.setContainerClassnames(2, containerClassnames, hasSubMenu);
-                    } else if (
-                        currentClasses.includes('menu-default') &&
-                        !currentClasses.includes('menu-sub-hidden') &&
-                        (menuClickCount === 1 || menuClickCount === 3)
-                    ) {
-                        this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
-                    }
-                } else {
-                    this.props.addContainerClassname(
-                        'sub-show-temporary',
-                        containerClassnames
-                    );
+            // if (selectedParent === this.state.selectedParentMenu && )
+            // if (!currentClasses.includes('sub-show-temporary')) {
+            if (!currentClasses.includes('menu-mobile')) {
+                if (
+                    currentClasses.includes('menu-sub-hidden') &&
+                    (menuClickCount === 2 || menuClickCount === 0)
+                ) {
+                    this.props.setContainerClassnames(3, containerClassnames, hasSubMenu);
+                } else if (
+                    currentClasses.includes('menu-hidden') &&
+                    (menuClickCount === 1 || menuClickCount === 3)
+                ) {
+                    this.props.setContainerClassnames(2, containerClassnames, hasSubMenu);
+                } else if (
+                    currentClasses.includes('menu-default') &&
+                    !currentClasses.includes('menu-sub-hidden') &&
+                    (menuClickCount === 1 || menuClickCount === 3)
+                ) {
+                    this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
                 }
+                this.setState({
+                    selectedParentMenu: selectedParent,
+                    viewingParentMenu: selectedParent
+                });
+            } else {
+                this.props.addContainerClassname(
+                    'sub-show-temporary',
+                    containerClassnames
+                );
+                this.setState({
+                    selectedParentMenu: selectedParent,
+                    viewingParentMenu: selectedParent
+                });
             }
-            else
-            {
+            if (selectedParent === this.state.selectedParentMenu && this.state.viewingParentMenu && currentClasses.includes('sub-show-temporary')) {
                 this.props.removeContainerClassname(
                     'sub-show-temporary',
                     containerClassnames
                 );
+                this.setState({
+                    selectedParentMenu: selectedParent,
+                    viewingParentMenu: ''
+                });
             }
-            this.setState({
-                viewingParentMenu: selectedParent
-            });
         }
     };
 

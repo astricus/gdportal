@@ -2,6 +2,7 @@ import {
 
 	MENU_SET_CLASSNAMES,
 	MENU_CONTAINER_ADD_CLASSNAME,
+	MENU_CONTAINER_REMOVE_CLASSNAME,
 	MENU_CLICK_MOBILE_MENU,
 	MENU_CHANGE_DEFAULT_CLASSES,
 	MENU_CHANGE_HAS_SUB_ITEM_STATUS
@@ -41,6 +42,12 @@ export default (state = INIT_STATE, action) => {
 		case MENU_CONTAINER_ADD_CLASSNAME:
 		return Object.assign({}, state, {
 			containerClassnames: action.payload
+        })
+        
+        case MENU_CONTAINER_REMOVE_CLASSNAME:
+		return Object.assign({}, state, {
+			containerClassnames: action.payload.containerClassnames,
+			menuClickCount:action.payload.menuClickCount
 		})
 
 		case MENU_CHANGE_DEFAULT_CLASSES:

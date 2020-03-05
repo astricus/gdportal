@@ -1,6 +1,7 @@
 import {
     MENU_SET_CLASSNAMES,
     MENU_CONTAINER_ADD_CLASSNAME,
+    MENU_CONTAINER_REMOVE_CLASSNAME,
     MENU_CLICK_MOBILE_MENU,
     MENU_CHANGE_DEFAULT_CLASSES,
     MENU_CHANGE_HAS_SUB_ITEM_STATUS
@@ -38,8 +39,8 @@ export const removeContainerClassname = (classname, strCurrentClasses) => {
     const newClasses = strCurrentClasses.indexOf(classname) > -1 ? strCurrentClasses.split(' ').filter(x => x !== '' && x !== classname).join(' ') : strCurrentClasses;
     return (
         {
-            type: MENU_CONTAINER_ADD_CLASSNAME,
-            payload: newClasses
+            type: MENU_CONTAINER_REMOVE_CLASSNAME,
+            payload: { containerClassnames: newClasses, menuClickCount: 2 }
         }
     )
 }
