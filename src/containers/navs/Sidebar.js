@@ -18,7 +18,7 @@ import {
 } from '../../redux/actions';
 
 import menuItems from '../../constants/menu';
-import Switch from "rc-switch";
+// import Switch from "rc-switch";
 import "rc-switch/assets/index.css";
 
 class Sidebar extends Component {
@@ -279,8 +279,6 @@ class Sidebar extends Component {
             const currentClasses = containerClassnames
                 ? containerClassnames.split(' ').filter(x => x !== '')
                 : '';
-            // if (selectedParent === this.state.selectedParentMenu && )
-            // if (!currentClasses.includes('sub-show-temporary')) {
             if (!currentClasses.includes('menu-mobile')) {
                 if (
                     currentClasses.includes('menu-sub-hidden') &&

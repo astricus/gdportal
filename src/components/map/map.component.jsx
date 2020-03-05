@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Map, TileLayer, GeoJSON, Marker } from 'react-leaflet';
-import MarkerClusterGroup from '../marker-cluster/marker-cluster.component';
+import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+// import MarkerClusterGroup from '../marker-cluster/marker-cluster.component';
 import region_41 from '../../assets/region_41';
 
 // import 'react-leaflet-markercluster/dist/styles.min.css';

@@ -42,6 +42,67 @@ module.exports = {
     "menu.search" :"Поиск",
     "menu.docs": "Документация",
     "menu.blank-page": "Пустая страница",
+
+    // Меню Национальные проекты
+    "menu.nat_proj": "Национальные проекты",
+    "menu.nat_proj.health": "Здравоохранение",
+    "menu.nat_proj.education": "Образование",
+    "menu.nat_proj.demography": "Демография",
+    "menu.nat_proj.culture": "Культура",
+    "menu.nat_proj.roads": "Дороги",
+    "menu.nat_proj.city-objects": "Городская среда",
+    "menu.nat_proj.ecology": "Экология",
+    "menu.nat_proj.science": "Наука",
+    "menu.nat_proj.enterpr": "Предпринимательство",
+    "menu.nat_proj.digital": "Цифровая экономика",
+    "menu.nat_proj.labour": "Производительность труда",
+    "menu.nat_proj.export": "Экспорт",
+    "menu.nat_proj.infrastructure": "Магистр. инфраструктура",
+
+    // Меню Экономическая карта
+    "menu.economic_map": "Экономическая карта",
+    "menu.economic_map.investing": "Инвестиционные площадки",
+    "menu.economic_map.budget": "Бюджет муниц. обр.",
+    
+    // Меню Административная карта
+    "menu.admin_map": "Административная карта",
+    "menu.admin_map.munic": "Муниципальные образования",
+    "menu.admin_map.people": "Плотность населения",
+    "menu.admin_map.people-dens": "Плотность населения",
+    "menu.admin_map.people-quan": "Численность населения",
+    "menu.admin_map.centres": "Центры МО",
+    
+    // Меню Социальная карта
+    "menu.social_map": "Социальная карта",
+    "menu.social_map.edu": "Образования",
+    "menu.social_map.medicine": "Медицина",
+    "menu.social_map.culture": "Культурно-досуговые",
+    "menu.social_map.social-sec": "Соцзащита",
+    "menu.social_map.sport": "Спортивные объекты",
+    "menu.social_map.tourism": "Туризм и рекреация",
+    "menu.social_map.garbage": "Обращение с отходами",
+    "menu.social_map.common": "Общественные пространства",
+    
+    // Меню Градостр. документация
+    "menu.city_docs": "Градостр. документация",
+    "menu.city_docs.stp": "СТП",
+    "menu.city_docs.gp": "ГП",
+    "menu.city_docs.pzz": "ПЗЗ",
+    "menu.city_docs.ppmit": "ППиМТ",
+    
+    // Меню Экологическая карта
+    "menu.ecologic_map": "Экологическая карта",
+    "menu.ecologic_map.interest-places": "Точки интереса",
+    "menu.ecologic_map.oopt": "ООПТ",
+    "menu.ecologic_map.zouit": "ЗОУИТ",
+    "menu.ecologic_map.garbage": "Обращение с отходами",
+    
+    // Меню Транспортная карта
+    "menu.transport_map": "Транспортная карта",
+    "menu.transport_map.uds": "УДС",
+    "menu.transport_map.parking": "Парковки",
+    "menu.transport_map.ot": "ОТ",
+    "menu.transport_map.bmd": "БМД",
   
    /* 04.Error Page */
    "pages.error-title": "Ошибка, страница не найдена",

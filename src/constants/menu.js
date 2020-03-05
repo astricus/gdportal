@@ -2,72 +2,72 @@ const data = [
     {
         id: "nat_proj",
         icon: "simple-icon-arrow-right",
-        label: "Национальные проекты",
+        label: "menu.nat_proj",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "Здравоохранение",
+                label: "menu.nat_proj.health",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Образование",
+                label: "menu.nat_proj.education",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Демография",
+                label: "menu.nat_proj.demography",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Культура",
+                label: "menu.nat_proj.culture",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Дороги",
+                label: "menu.nat_proj.roads",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Городская среда",
+                label: "menu.nat_proj.city-objects",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Экология",
+                label: "menu.nat_proj.ecology",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Наука",
+                label: "menu.nat_proj.science",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Предпринимательство",
+                label: "menu.nat_proj.enterpr",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Цифровая экономика",
+                label: "menu.nat_proj.digital",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Производительность труда",
+                label: "menu.nat_proj.labour",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Экспорт",
+                label: "menu.nat_proj.export",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Магистр. инфраструктура",
+                label: "menu.nat_proj.infrastructure",
                 to: "#"
             }
         ]
@@ -75,17 +75,17 @@ const data = [
     {
         id: "economic_map",
         icon: "simple-icon-arrow-right",
-        label: "Экономическая карта",
+        label: "menu.economic_map",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "Инвестиционные площадки",
+                label: "menu.economic_map.investing",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Бюджет муниц. обр.",
+                label: "menu.economic_map.budget",
                 to: "#"
             }
         ]
@@ -93,27 +93,27 @@ const data = [
     {
         id: "admin_map",
         icon: "simple-icon-arrow-right",
-        label: "Административная карта",
+        label: "menu.admin_map",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "Муниципальные образования",
+                label: "menu.admin_map.munic",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Плотность населения",
+                label: "menu.admin_map.people-dens",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Численность населения",
+                label: "menu.admin_map.people-quan",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Центры МО",
+                label: "menu.admin_map.centres",
                 to: "#"
             }
         ]
@@ -121,47 +121,47 @@ const data = [
     {
         id: "social_map",
         icon: "simple-icon-arrow-right",
-        label: "Социальная карта",
+        label: "menu.social_map",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "Образование",
+                label: "menu.social_map.edu",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Медицина",
+                label: "menu.social_map.medicine",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Культурно-досуговые",
+                label: "menu.social_map.culture",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Соцзащита",
+                label: "menu.social_map.social-sec",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Спортивные объекты",
+                label: "menu.social_map.sport",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Туризм и рекреация",
+                label: "menu.social_map.tourism",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Обращение с отходами",
+                label: "menu.social_map.garbage",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Общественные пространства",
+                label: "menu.social_map.common",
                 to: "#"
             }
         ]
@@ -169,27 +169,27 @@ const data = [
     {
         id: "grad_docs",
         icon: "simple-icon-arrow-right",
-        label: "Градостр. документация",
+        label: "menu.city_docs",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "СТП",
+                label: "menu.city_docs.stp",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ГП",
+                label: "menu.city_docs.gp",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ПЗЗ",
+                label: "menu.city_docs.pzz",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ППиМТ",
+                label: "menu.city_docs.ppmit",
                 to: "#"
             }
         ]
@@ -197,27 +197,27 @@ const data = [
     {
         id: "ecologic_map",
         icon: "simple-icon-arrow-right",
-        label: "Экологическая карта",
+        label: "menu.ecologic_map",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "Точки интереса",
+                label: "menu.ecologic_map.interest-places",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ООПТ",
+                label: "menu.ecologic_map.oopt",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ЗОУИТ",
+                label: "menu.ecologic_map.zouit",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Обращение с отходами",
+                label: "menu.ecologic_map.garbage",
                 to: "#"
             }
         ]
@@ -225,27 +225,27 @@ const data = [
     {
         id: "transport_map",
         icon: "simple-icon-arrow-right",
-        label: "Транспортная карта",
+        label: "menu.transport_map",
         to: "#",
         subs: [
             {
                 icon: "simple-icon-plus",
-                label: "УДС",
+                label: "menu.transport_map.uds",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "Парковки",
+                label: "menu.transport_map.parking",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "ОТ",
+                label: "menu.transport_map.ot",
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
-                label: "БМД",
+                label: "menu.transport_map.bmd",
                 to: "#"
             }
         ]
