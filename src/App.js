@@ -34,6 +34,8 @@ class App extends Component {
       document.body.classList.add('ltr');
       document.body.classList.remove('rtl');
     }
+    // Rounded theme
+    document.body.classList.add('rounded');
   }
 
   render() {

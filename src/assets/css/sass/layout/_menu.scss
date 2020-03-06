@@ -122,6 +122,26 @@
           height: 60px;
         }
       }
+
+      @include respond-below(xxs) {
+        width: $main-menu-width-xxs;
+        height: calc(100% - #{$navbar-height-xs});
+  
+        ul li i {
+          font-size: 28px;
+          line-height: 38px;
+        }
+  
+        ul li a {
+          height: $main-menu-item-height-mobile;
+          font-size: 10px;
+        }
+  
+        ul li.active:after {
+          width: 3px;
+          height: 60px;
+        }
+      }
     }
   
     .sub-menu {
@@ -263,6 +283,19 @@
         left: $main-menu-width-xs;
         width: $sub-menu-width-xs;
         height: calc(100% - #{$navbar-height-xs});
+      }
+
+      @include respond-below(xxs) {
+        left: $main-menu-width-xxs;
+        width: $sub-menu-width-xxs;
+        height: calc(100% - #{$navbar-height-xs});
+        ul {
+            li {
+              a {
+                font-size: 10px;
+              }
+            }
+        }
       }
     }
   

@@ -66,7 +66,7 @@ module.exports = {
     
     // Меню Административная карта
     "menu.admin_map": "Административная карта",
-    "menu.admin_map.munic": "Муниципальные образования",
+    "menu.admin_map.munic": "Муниц. образования",
     "menu.admin_map.people": "Плотность населения",
     "menu.admin_map.people-dens": "Плотность населения",
     "menu.admin_map.people-quan": "Численность населения",
