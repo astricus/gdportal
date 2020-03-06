@@ -17,9 +17,13 @@ import {
     changeSelectedMenuHasSubItems
 } from '../../redux/actions';
 
-import menuItems from '../../constants/menu';
-// import Switch from "rc-switch";
+import menuData from '../../constants/menu';
+import Switch from "rc-switch";
 import "rc-switch/assets/index.css";
+
+function onChange(sub, value, event) {
+    console.log(`switch on menu item ${sub.label} checked: ${value}`, event); // eslint-disable-line
+  }
 
 class Sidebar extends Component {
     constructor(props) {
@@ -27,7 +31,8 @@ class Sidebar extends Component {
         this.state = {
             selectedParentMenu: '',
             viewingParentMenu: '',
-            collapsedMenus: []
+            collapsedMenus: [],
+            menuItems: menuData
         };
     }
 
@@ -216,7 +221,7 @@ class Sidebar extends Component {
             } else if (this.state.selectedParentMenu === '') {
                 this.setState(
                     {
-                        selectedParentMenu: menuItems[0].id
+                        selectedParentMenu: this.state.menuItems[0].id
                     },
                     callback
                 );
@@ -232,7 +237,7 @@ class Sidebar extends Component {
 
     getIsHasSubItem = () => {
         const { selectedParentMenu } = this.state;
-        const menuItem = menuItems.find(x => x.id === selectedParentMenu);
+        const menuItem = this.state.menuItems.find(x => x.id === selectedParentMenu);
         if (menuItem)
             return menuItem && menuItem.subs && menuItem.subs.length > 0
                 ? true
@@ -250,6 +255,7 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
+        console.log(this.state.menuItems[0].subs[0].isVisible);
         window.addEventListener('resize', this.handleWindowResize);
         this.handleWindowResize();
         this.handleProps();
@@ -341,11 +347,24 @@ class Sidebar extends Component {
         return false;
     };
 
+    handleSwitch = (sub, subIdx, event) => {
+        const menuItemIdx = this.state.menuItems.findIndex(x => x.id === this.state.selectedParentMenu);
+        if (menuItemIdx > -1 && subIdx > -1) {
+            const isVisible = !sub.isVisible;
+            const newMenuItems = this.state.menuItems;
+            newMenuItems[menuItemIdx].subs[subIdx].isVisible = isVisible;
+            this.setState({
+                menuItems: newMenuItems
+            });
+        }
+    };
+
     render() {
         const {
             selectedParentMenu,
             viewingParentMenu,
-            collapsedMenus
+            collapsedMenus,
+            menuItems
         } = this.state;
         return (
             <div className="sidebar">
@@ -498,16 +517,23 @@ class Sidebar extends Component {
                                                                         </Nav>
                                                                     </Collapse>
                                                                 </Fragment>
+                                                            ) : sub.item === "layer" ? (
+                                                                <div className="item-layer">
+                                                                    <Switch
+                                                                        className="custom-switch custom-switch-primary custom-switch-small"
+                                                                        checked={sub.isVisible}
+                                                                        onChange={(event) => this.handleSwitch(sub, index, event)}
+                                                                    />
+                                                                    <NavLink to={sub.to}>
+                                                                        <IntlMessages id={sub.label} />
+                                                                    </NavLink>
+                                                                </div>
                                                             ) : (
-                                                                        <NavLink to={sub.to}>
-                                                                            <i className={sub.icon} />{' '}
-                                                                            <IntlMessages id={sub.label} />
-                                                                        </NavLink>
-                                                                    )}
-                                                            {/* <Switch
-                                                                className="custom-switch custom-switch-primary custom-switch-small"
-                                                                checked={true}
-                                                            /> */}
+                                                                            <NavLink to={sub.to}>
+                                                                                <i className={sub.icon} />{' '}
+                                                                                <IntlMessages id={sub.label} />
+                                                                            </NavLink>
+                                                                        )}
                                                         </NavItem>
                                                     );
                                                 })}

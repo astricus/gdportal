@@ -175,6 +175,13 @@
             vertical-align: middle;
             display: inline-block;
           }
+
+          .item-layer {
+              a {
+                display: inline-block;
+                padding-left: 10px;
+              }
+          }
   
           &.active i,
           &.active a {
