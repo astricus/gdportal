@@ -431,6 +431,18 @@ class Sidebar extends Component {
                                             })}
                                             data-parent={item.id}
                                         >
+                                            {/* {item.item === "layers" ? (
+                                                <div className="layers">
+                                                <Switch
+                                                    className="custom-switch custom-switch-primary custom-switch-small"
+                                                    // checked={sub.isVisible}
+                                                    // onChange={(event) => this.handleSwitch(sub, index, event)}
+                                                />
+                                                <NavLink to={item.to}>
+                                                    Показать все
+                                                </NavLink>
+                                                </div>
+                                            ) : ''} */}
                                             {item.subs &&
                                                 item.subs.map((sub, index) => {
                                                     return (
@@ -520,11 +532,11 @@ class Sidebar extends Component {
                                                             ) : sub.item === "layer" ? (
                                                                 <div className="item-layer">
                                                                     <Switch
-                                                                        className="custom-switch custom-switch-primary custom-switch-small"
+                                                                        className="custom-switch custom-switch-primary-inverse custom-switch-small"
                                                                         checked={sub.isVisible}
                                                                         onChange={(event) => this.handleSwitch(sub, index, event)}
                                                                     />
-                                                                    <NavLink to={sub.to}>
+                                                                    <NavLink to={sub.to} onClick={(event) => this.handleSwitch(sub, index, event)}>
                                                                         <IntlMessages id={sub.label} />
                                                                     </NavLink>
                                                                 </div>

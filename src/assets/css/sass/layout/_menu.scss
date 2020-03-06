@@ -175,6 +175,16 @@
   
       ul {
         display: none;
+
+        .layers {
+            margin-left: 30px;
+            margin-bottom: 20px;
+
+            a {
+                font-weight: 600;
+                padding-left: 10px;
+            }
+        }
   
         li {
           margin-bottom: 0;

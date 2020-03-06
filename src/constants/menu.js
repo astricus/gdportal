@@ -4,6 +4,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.nat_proj",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -103,7 +104,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.economic_map",
         to: "#",
-        linktype: "layer",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -124,6 +125,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.admin_map",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -156,6 +158,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.social_map",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -212,6 +215,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.city_docs",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -244,6 +248,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.ecologic_map",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -276,6 +281,7 @@ const data = [
         icon: "simple-icon-arrow-right",
         label: "menu.transport_map",
         to: "#",
+        item: "layers",
         subs: [
             {
                 icon: "simple-icon-plus",
