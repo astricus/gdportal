@@ -5,6 +5,7 @@ const data = [
         label: "menu.nat_proj",
         to: "#",
         item: "layers",
+        isVisible: true,
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -105,17 +106,20 @@ const data = [
         label: "menu.economic_map",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.economic_map.investing",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.economic_map.budget",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]
@@ -126,29 +130,34 @@ const data = [
         label: "menu.admin_map",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.munic",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.people-dens",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.people-quan",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.centres",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]
@@ -159,53 +168,62 @@ const data = [
         label: "menu.social_map",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.edu",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.medicine",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.culture",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.social-sec",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.sport",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.tourism",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.garbage",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.common",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]
@@ -216,29 +234,34 @@ const data = [
         label: "menu.city_docs",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.stp",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.gp",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.pzz",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.ppmit",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]
@@ -249,29 +272,34 @@ const data = [
         label: "menu.ecologic_map",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.interest-places",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.oopt",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.zouit",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.garbage",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]
@@ -282,29 +310,34 @@ const data = [
         label: "menu.transport_map",
         to: "#",
         item: "layers",
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.uds",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.parking",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.ot",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             },
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.bmd",
                 item: "layer",
+                isVisible: false,
                 to: "#"
             }
         ]

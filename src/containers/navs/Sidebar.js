@@ -23,7 +23,7 @@ import "rc-switch/assets/index.css";
 
 function onChange(sub, value, event) {
     console.log(`switch on menu item ${sub.label} checked: ${value}`, event); // eslint-disable-line
-  }
+}
 
 class Sidebar extends Component {
     constructor(props) {
@@ -347,12 +347,28 @@ class Sidebar extends Component {
         return false;
     };
 
+    handleLayersSwitch = (item, event) => {
+        item.subs.forEach(sub => {
+            item.isVisible ? sub.isVisible = false : sub.isVisible = true;
+        });
+        item.isVisible = !item.isVisible;
+        const newMenuItems = this.state.menuItems;
+        this.setState({
+            menuItems: newMenuItems
+        });
+    };
+
     handleSwitch = (sub, subIdx, event) => {
         const menuItemIdx = this.state.menuItems.findIndex(x => x.id === this.state.selectedParentMenu);
         if (menuItemIdx > -1 && subIdx > -1) {
             const isVisible = !sub.isVisible;
+            let isAllVisible = true;
             const newMenuItems = this.state.menuItems;
             newMenuItems[menuItemIdx].subs[subIdx].isVisible = isVisible;
+            newMenuItems[menuItemIdx].subs.forEach(sub => {
+                isAllVisible &= sub.isVisible;
+            })
+            newMenuItems[menuItemIdx].isVisible = isAllVisible;
             this.setState({
                 menuItems: newMenuItems
             });
@@ -431,18 +447,18 @@ class Sidebar extends Component {
                                             })}
                                             data-parent={item.id}
                                         >
-                                            {/* {item.item === "layers" ? (
+                                            {item.item === "layers" ? (
                                                 <div className="layers">
-                                                <Switch
-                                                    className="custom-switch custom-switch-primary custom-switch-small"
-                                                    // checked={sub.isVisible}
-                                                    // onChange={(event) => this.handleSwitch(sub, index, event)}
-                                                />
-                                                <NavLink to={item.to}>
-                                                    Показать все
+                                                    <Switch
+                                                        className="custom-switch custom-switch-primary custom-switch-small"
+                                                        checked={item.isVisible}
+                                                        onChange={(event) => this.handleLayersSwitch(item, event)}
+                                                    />
+                                                    <NavLink to={item.to}>
+                                                        Показать все
                                                 </NavLink>
                                                 </div>
-                                            ) : ''} */}
+                                            ) : ''}
                                             {item.subs &&
                                                 item.subs.map((sub, index) => {
                                                     return (
