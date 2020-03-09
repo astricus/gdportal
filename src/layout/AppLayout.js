@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import TopNav from "../containers/navs/Topnav";
 import Sidebar from "../containers/navs/Sidebar";
+import DateSlider from "../components/date-slider/date-slider.component";
 
 import MapData from "../components/map/map.component";
 
@@ -15,6 +16,7 @@ class AppLayout extends Component {
                 <MapData />
                 <TopNav history={this.props.history} />
                 <Sidebar />
+                {/* <DateSlider /> */}
                 {/* <main> */}
                     {/* <div className="container-fluid"> */}
                         {this.props.children}

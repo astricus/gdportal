@@ -10,8 +10,10 @@ export const MENU_CLICK_MOBILE_MENU = "MENU_CLICK_MOBILE_MENU";
 export const MENU_CHANGE_DEFAULT_CLASSES = "MENU_CHANGE_DEFAULT_CLASSES";
 export const MENU_CHANGE_HAS_SUB_ITEM_STATUS =
   "MENU_CHANGE_HAS_SUB_ITEM_STATUS";
+export const MENU_CHANGE_LAYER_IS_VISIBLE = "MENU_CHANGE_LAYER_IS_VISIBLE";
+export const MENU_CHANGE_LAYERS_IS_VISIBLE = "MENU_CHANGE_LAYERS_IS_VISIBLE";
 
 
 
-export * from "./menu/actions";
+export * from "./menu/menu.actions";
 export * from "./settings/actions";

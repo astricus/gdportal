@@ -4,7 +4,9 @@ import {
     MENU_CONTAINER_REMOVE_CLASSNAME,
     MENU_CLICK_MOBILE_MENU,
     MENU_CHANGE_DEFAULT_CLASSES,
-    MENU_CHANGE_HAS_SUB_ITEM_STATUS
+    MENU_CHANGE_HAS_SUB_ITEM_STATUS,
+    MENU_CHANGE_LAYER_IS_VISIBLE,
+    MENU_CHANGE_LAYERS_IS_VISIBLE
 } from '../actions';
 
 export const changeSelectedMenuHasSubItems = (payload) => {
@@ -61,23 +63,21 @@ export const clickOnMobileMenu = (strCurrentClasses) => {
     )
 }
 
-export const setContainerClassnames = (clickIndex, strCurrentClasses,selectedMenuHasSubItems) => {
+export const setContainerClassnames = (clickIndex, strCurrentClasses, selectedMenuHasSubItems) => {
     const currentClasses = strCurrentClasses ? strCurrentClasses.split(' ').filter(x => x !== '') : '';
     let nextClasses = '';
     if (!selectedMenuHasSubItems) {
         if (currentClasses.includes("menu-default") && (clickIndex % 4 === 0 || clickIndex % 4 === 3)) {
-          clickIndex=1;
+            clickIndex = 1;
         }
         if (currentClasses.includes("menu-sub-hidden") && (clickIndex % 4 === 2)) {
-          clickIndex=0;
+            clickIndex = 0;
         }
-        if (currentClasses.includes("menu-hidden") && (clickIndex % 4 === 2 || clickIndex % 4 === 3 )) {
-            clickIndex=0;
-          }
+        if (currentClasses.includes("menu-hidden") && (clickIndex % 4 === 2 || clickIndex % 4 === 3)) {
+            clickIndex = 0;
+        }
 
-      }
-
-
+    }
 
     if (clickIndex % 4 === 0) {
         if (currentClasses.includes('menu-default') && currentClasses.includes('menu-sub-hidden')) {
@@ -121,13 +121,33 @@ export const setContainerClassnames = (clickIndex, strCurrentClasses,selectedMen
             nextClasses = 'menu-hidden main-show-temporary';
         }
     }
+
     if (currentClasses.includes('menu-mobile')) {
         nextClasses += ' menu-mobile';
     }
+
     return (
         {
             type: MENU_SET_CLASSNAMES,
             payload: { containerClassnames: nextClasses, menuClickCount: clickIndex }
+        }
+    )
+}
+
+export const setLayerIsVisible = (isVisible, parentId, subId) => {
+    return (
+        {
+            type: MENU_CHANGE_LAYER_IS_VISIBLE,
+            payload: { isVisible, parentId, subId }
+        }
+    )
+}
+
+export const setLayersIsVisible = (isVisible, parentId) => {
+    return (
+        {
+            type: MENU_CHANGE_LAYERS_IS_VISIBLE,
+            payload: { isVisible, parentId }
         }
     )
 }

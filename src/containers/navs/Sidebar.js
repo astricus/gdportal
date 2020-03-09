@@ -14,10 +14,12 @@ import {
     addContainerClassname,
     removeContainerClassname,
     changeDefaultClassnames,
-    changeSelectedMenuHasSubItems
+    changeSelectedMenuHasSubItems,
+    setLayerIsVisible,
+    setLayersIsVisible
 } from '../../redux/actions';
 
-import menuData from '../../constants/menu';
+// import menuData from '../../constants/menu';
 import Switch from "rc-switch";
 import "rc-switch/assets/index.css";
 
@@ -32,7 +34,6 @@ class Sidebar extends Component {
             selectedParentMenu: '',
             viewingParentMenu: '',
             collapsedMenus: [],
-            menuItems: menuData
         };
     }
 
@@ -221,7 +222,7 @@ class Sidebar extends Component {
             } else if (this.state.selectedParentMenu === '') {
                 this.setState(
                     {
-                        selectedParentMenu: this.state.menuItems[0].id
+                        selectedParentMenu: this.props.menuData[0].id
                     },
                     callback
                 );
@@ -237,7 +238,7 @@ class Sidebar extends Component {
 
     getIsHasSubItem = () => {
         const { selectedParentMenu } = this.state;
-        const menuItem = this.state.menuItems.find(x => x.id === selectedParentMenu);
+        const menuItem = this.props.menuData.find(x => x.id === selectedParentMenu);
         if (menuItem)
             return menuItem && menuItem.subs && menuItem.subs.length > 0
                 ? true
@@ -255,7 +256,7 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.menuItems[0].subs[0].isVisible);
+        console.log(this.props.menuData[0].subs[0].isVisible);
         window.addEventListener('resize', this.handleWindowResize);
         this.handleWindowResize();
         this.handleProps();
@@ -347,32 +348,16 @@ class Sidebar extends Component {
         return false;
     };
 
-    handleLayersSwitch = (item, event) => {
-        item.subs.forEach(sub => {
-            item.isVisible ? sub.isVisible = false : sub.isVisible = true;
-        });
-        item.isVisible = !item.isVisible;
-        const newMenuItems = this.state.menuItems;
-        this.setState({
-            menuItems: newMenuItems
-        });
+    handleLayersSwitch = (value, event) => {
+        const menuItemIdx = this.props.menuData.findIndex(x => x.id === this.state.selectedParentMenu);
+        this.props.setLayersIsVisible(value, menuItemIdx);
+        // this.forceUpdate(); // bad practice, will change in the future
     };
 
-    handleSwitch = (sub, subIdx, event) => {
-        const menuItemIdx = this.state.menuItems.findIndex(x => x.id === this.state.selectedParentMenu);
-        if (menuItemIdx > -1 && subIdx > -1) {
-            const isVisible = !sub.isVisible;
-            let isAllVisible = true;
-            const newMenuItems = this.state.menuItems;
-            newMenuItems[menuItemIdx].subs[subIdx].isVisible = isVisible;
-            newMenuItems[menuItemIdx].subs.forEach(sub => {
-                isAllVisible &= sub.isVisible;
-            })
-            newMenuItems[menuItemIdx].isVisible = isAllVisible;
-            this.setState({
-                menuItems: newMenuItems
-            });
-        }
+    handleSwitch = (subIdx, value, event) => {
+        const menuItemIdx = this.props.menuData.findIndex(x => x.id === this.state.selectedParentMenu);
+        this.props.setLayerIsVisible(value, menuItemIdx, subIdx);
+        // this.forceUpdate(); // bad practice, will change in the future
     };
 
     render() {
@@ -380,8 +365,9 @@ class Sidebar extends Component {
             selectedParentMenu,
             viewingParentMenu,
             collapsedMenus,
-            menuItems
         } = this.state;
+        const { menuData } = this.props;
+        // console.log(menuData);
         return (
             <div className="sidebar">
                 <div className="main-menu">
@@ -390,8 +376,8 @@ class Sidebar extends Component {
                             options={{ suppressScrollX: true, wheelPropagation: false }}
                         >
                             <Nav vertical className="list-unstyled">
-                                {menuItems &&
-                                    menuItems.map(item => {
+                                {menuData &&
+                                    menuData.map(item => {
                                         return (
                                             <NavItem
                                                 key={item.id}
@@ -434,8 +420,8 @@ class Sidebar extends Component {
                         <PerfectScrollbar
                             options={{ suppressScrollX: true, wheelPropagation: false }}
                         >
-                            {menuItems &&
-                                menuItems.map(item => {
+                            {menuData &&
+                                menuData.map(item => {
                                     return (
                                         <Nav
                                             key={item.id}
@@ -452,7 +438,7 @@ class Sidebar extends Component {
                                                     <Switch
                                                         className="custom-switch custom-switch-primary custom-switch-small"
                                                         checked={item.isVisible}
-                                                        onChange={(event) => this.handleLayersSwitch(item, event)}
+                                                        onChange={(value, event) => this.handleLayersSwitch(value, event)}
                                                     />
                                                     <NavLink to={item.to}>
                                                         Показать все
@@ -550,9 +536,9 @@ class Sidebar extends Component {
                                                                     <Switch
                                                                         className="custom-switch custom-switch-primary-inverse custom-switch-small"
                                                                         checked={sub.isVisible}
-                                                                        onChange={(event) => this.handleSwitch(sub, index, event)}
+                                                                        onChange={(value, event) => this.handleSwitch(index, value, event)}
                                                                     />
-                                                                    <NavLink to={sub.to} onClick={(event) => this.handleSwitch(sub, index, event)}>
+                                                                    <NavLink to={sub.to} onClick={(value, event) => this.handleSwitch(index, value, event)}>
                                                                         <IntlMessages id={sub.label} />
                                                                     </NavLink>
                                                                 </div>
@@ -582,6 +568,7 @@ const mapStateToProps = ({ menu }) => {
         subHiddenBreakpoint,
         menuHiddenBreakpoint,
         menuClickCount,
+        menuData,
         selectedMenuHasSubItems
     } = menu;
     return {
@@ -589,6 +576,7 @@ const mapStateToProps = ({ menu }) => {
         subHiddenBreakpoint,
         menuHiddenBreakpoint,
         menuClickCount,
+        menuData,
         selectedMenuHasSubItems
     };
 };
@@ -600,7 +588,9 @@ export default withRouter(
             addContainerClassname,
             removeContainerClassname,
             changeDefaultClassnames,
-            changeSelectedMenuHasSubItems
+            changeSelectedMenuHasSubItems,
+            setLayerIsVisible,
+            setLayersIsVisible
         }
     )(Sidebar)
 );

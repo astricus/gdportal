@@ -74,14 +74,14 @@ module.exports = {
     
     // Меню Социальная карта
     "menu.social_map": "Социальная карта",
-    "menu.social_map.edu": "Образования",
+    "menu.social_map.edu": "Образование",
     "menu.social_map.medicine": "Медицина",
     "menu.social_map.culture": "Культурно-досуговые",
     "menu.social_map.social-sec": "Соцзащита",
     "menu.social_map.sport": "Спортивные объекты",
     "menu.social_map.tourism": "Туризм и рекреация",
     "menu.social_map.garbage": "Обращение с отходами",
-    "menu.social_map.common": "Общественные пространства",
+    "menu.social_map.common": "Общ. пространства",
     
     // Меню Градостр. документация
     "menu.city_docs": "Градостр. документация",

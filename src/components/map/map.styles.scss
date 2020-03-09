@@ -6,3 +6,15 @@
     background-color: #63b2df;
     color: rgb(0, 156, 148);
 }
+
+.leaflet-tile-container svg {
+    overflow: visible !important;
+    image {
+        cursor: pointer;
+        color: #63b2df;
+    }
+}
+
+.leaflet-custom-icon {
+    cursor: pointer;
+}

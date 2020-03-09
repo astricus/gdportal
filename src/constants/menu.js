@@ -10,6 +10,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.health",
+                layer: "kamchatka:health",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -17,6 +18,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.education",
+                layer: "kamchatka:education",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -31,6 +33,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.culture",
+                layer: "kamchatka:culture",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -38,6 +41,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.roads",
+                layer: "kamchatka:road",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -45,6 +49,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.city-objects",
+                layer: "kamchatka:functional_zone",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -341,6 +346,12 @@ const data = [
                 to: "#"
             }
         ]
+    },
+    {
+        id: "blankpage",
+        icon: "iconsminds-bucket",
+        label: "menu.blank-page",
+        to: "/app/blank-page"
     }
 ];
 export default data;
