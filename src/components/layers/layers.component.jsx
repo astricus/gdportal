@@ -24,11 +24,16 @@ class Layers extends React.Component {
         const format = '&outputFormat=application/json';
         const { menuData } = this.props;
         for (const item of menuData) {
-            for (const sub of item.subs) {
-                if (sub.layer && sub.isVisible) {
-                    const getRequest = url + request + tnames + sub.layer + projection + format;
-                    const response = await axios.get(getRequest);
-                    layers.push({ geojson: response.data });
+            if (item.item === "layers" && item.subs.length) {
+                for (const sub of item.subs) {
+                    if (sub.layer && sub.isVisible) {
+                        const getRequest = url + request + tnames + sub.layer + projection + format;
+                        const response = await axios.get(getRequest);
+                        layers.push({ 
+                            geojson: response.data,
+                            key: sub.layer
+                        });
+                    }
                 }
             }
         }
@@ -45,7 +50,6 @@ class Layers extends React.Component {
         if (this.props.menuData !== prevProps.menuData) {
             this.updateLayers();
         }
-
     };
 
     render() {

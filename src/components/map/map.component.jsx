@@ -95,7 +95,7 @@ class MapData extends Component {
                     layers.length && layers.map((layer, index) => {
                         return (
                             <GeoJSON
-                                key={index}
+                                key={layer.key}
                                 data={layer.geojson}
                                 style={this.geoJSONStyle}
                                 onEachFeature={this.onEachFeature}

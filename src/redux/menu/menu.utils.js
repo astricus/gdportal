@@ -16,7 +16,6 @@ export const changeLayerIsVisible = (menuData, payload) => {
 export const changeLayersIsVisible = (menuData, payload) => {
     const { isVisible, parentId } = payload;
     const newMenuData = [...menuData];
-    console.log("I am here!");
     if (parentId > -1) {
         newMenuData[parentId].isVisible = isVisible;
         newMenuData[parentId].subs && newMenuData[parentId].subs.forEach(sub => {
