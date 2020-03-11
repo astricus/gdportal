@@ -6,14 +6,15 @@ import TopNav from "../containers/navs/Topnav";
 import Sidebar from "../containers/navs/Sidebar";
 import DateSlider from "../components/date-slider/date-slider.component";
 
-import MapData from "../components/map/map.component";
+// import MapData from "../components/map/map.component";
+import Layers from '../components/layers/layers.component';
 
 class AppLayout extends Component {
     render() {
         const { containerClassnames } = this.props;
         return (
             <div id="app-container" className={containerClassnames}>
-                <MapData />
+                <Layers />
                 <TopNav history={this.props.history} />
                 <Sidebar />
                 {/* <DateSlider /> */}

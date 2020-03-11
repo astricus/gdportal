@@ -10,7 +10,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.health",
-                layer: "kamchatka:health",
+                layer: "kamchatka:health_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -18,7 +18,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.education",
-                layer: "kamchatka:education",
+                layer: "kamchatka:education_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -26,6 +26,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.demography",
+                layer: "kamchatka:sport_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -33,7 +34,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.culture",
-                layer: "kamchatka:culture",
+                layer: "kamchatka:culture_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -41,7 +42,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.roads",
-                layer: "kamchatka:road",
+                layer: "kamchatka:road_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -49,7 +50,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.city-objects",
-                layer: "kamchatka:functional_zone",
+                layer: "kamchatka:public_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -57,6 +58,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.ecology",
+                layer: "kamchatka:waste_facility_national_projects",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -64,6 +66,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.science",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -71,6 +74,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.enterpr",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -78,6 +82,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.digital",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -85,6 +90,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.labour",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -92,6 +98,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.export",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -99,6 +106,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.nat_proj.infrastructure",
+                layer: "",
                 item: "layer",
                 isVisible: true,
                 to: "#"
@@ -116,6 +124,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.economic_map.investing",
+                layer: "kamchatka:investment_zone_view",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -123,6 +132,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.economic_map.budget",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -140,6 +150,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.munic",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -147,6 +158,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.people-dens",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -154,6 +166,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.people-quan",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -161,6 +174,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.admin_map.centres",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -178,6 +192,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.edu",
+                layer: "kamchatka:education_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -185,6 +200,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.medicine",
+                layer: "kamchatka:health_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -192,6 +208,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.culture",
+                layer: "kamchatka:culture_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -199,6 +216,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.social-sec",
+                layer: "kamchatka:social_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -206,6 +224,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.sport",
+                layer: "kamchatka:sport_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -213,6 +232,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.tourism",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -220,6 +240,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.garbage",
+                layer: "kamchatka:waste_facility_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -227,6 +248,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.social_map.common",
+                layer: "kamchatka:public_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -244,6 +266,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.stp",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -251,6 +274,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.gp",
+                layer: "kamchatka:functional_zone_view",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -258,6 +282,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.pzz",
+                layer: "kamchatka:territorial_zone_view",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -265,6 +290,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.ppmit",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -282,6 +308,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.interest-places",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -289,6 +316,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.oopt",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -296,6 +324,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.zouit",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -303,6 +332,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.ecologic_map.garbage",
+                layer: "kamchatka:waste_facility_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -320,6 +350,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.uds",
+                layer: "kamchatka:road_projects",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -327,6 +358,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.parking",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -334,6 +366,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.ot",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
@@ -341,17 +374,18 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.transport_map.bmd",
+                layer: "",
                 item: "layer",
                 isVisible: false,
                 to: "#"
             }
         ]
     },
-    {
-        id: "blankpage",
-        icon: "iconsminds-bucket",
-        label: "menu.blank-page",
-        to: "/app/blank-page"
-    }
+    // {
+    //     id: "blankpage",
+    //     icon: "iconsminds-bucket",
+    //     label: "menu.blank-page",
+    //     to: "/app/blank-page"
+    // }
 ];
 export default data;

@@ -23,9 +23,6 @@ import {
 import Switch from "rc-switch";
 import "rc-switch/assets/index.css";
 
-function onChange(sub, value, event) {
-    console.log(`switch on menu item ${sub.label} checked: ${value}`, event); // eslint-disable-line
-}
 
 class Sidebar extends Component {
     constructor(props) {
@@ -256,7 +253,6 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.menuData[0].subs[0].isVisible);
         window.addEventListener('resize', this.handleWindowResize);
         this.handleWindowResize();
         this.handleProps();
@@ -269,7 +265,6 @@ class Sidebar extends Component {
     }
 
     toggleSubMenu = (e, menuItem) => {
-        console.log(this.state.selectedParentMenu);
         const selectedParent = menuItem.id;
         const hasSubMenu = menuItem.subs && menuItem.subs.length > 0;
         this.props.changeSelectedMenuHasSubItems(hasSubMenu);
