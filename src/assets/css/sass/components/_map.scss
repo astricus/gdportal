@@ -1,0 +1,64 @@
+.leaflet-container {
+    width: 100%;
+    // background-color: #63b2df;
+    // color: rgb(0, 156, 148);
+    width: 100%;
+    margin-top: $navbar-height;
+    height: calc(100vh - #{$navbar-height});
+    z-index: 100;
+
+    @include respond-below(xl) {
+        margin-top: $navbar-height-lg;
+        height: calc(100vh - #{$navbar-height-lg});
+    }
+
+    @include respond-below(lg) {
+        margin-top: $navbar-height-md;
+        height: calc(100vh - #{$navbar-height-md});
+    }
+
+    @include respond-below(sm) {
+        margin-top: $navbar-height-xs;
+        height: calc(100vh - #{$navbar-height-xs});
+    }
+    
+    
+}
+
+.leaflet-tile-container svg {
+    overflow: visible !important;
+    image {
+        cursor: pointer;
+        color: #63b2df;
+    }
+}
+
+.leaflet-custom-icon {
+    cursor: pointer;
+    margin-top: -41px !important;
+    margin-left: -17px !important;
+}
+
+.date-selector {
+    width: 280px;
+    height: 360px;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    background-color: #fff;
+    z-index: 1000;
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+    @include respond-below(sm) {
+        display: none;
+    }
+
+    &__center {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    &__opacity {
+        opacity: 0.5;
+    }
+}

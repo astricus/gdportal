@@ -17,7 +17,8 @@ class Layers extends React.Component {
 
     updateLayers = async () => {
         const layers = [];
-        const url = 'http://188.225.36.82:8080/geoserver/wfs?service=wfs&version=2.0.0';
+        // const url = 'http://188.225.36.82:8080/geoserver/wfs?service=wfs&version=2.0.0';
+        const url = 'https://gdportal.ru/geoserver/wfs?service=wfs&version=2.0.0';
         const request = '&request=GetFeature';
         const tnames = '&typeNames=';
         const projection = '&srsName=EPSG:4326';
@@ -31,7 +32,7 @@ class Layers extends React.Component {
                         const response = await axios.get(getRequest);
                         layers.push({ 
                             geojson: response.data,
-                            key: sub.layer
+                            key: sub.label
                         });
                     }
                 }

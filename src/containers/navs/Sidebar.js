@@ -278,6 +278,7 @@ class Sidebar extends Component {
             e.preventDefault();
 
             const { containerClassnames, menuClickCount } = this.props;
+            console.log(menuClickCount);
             const currentClasses = containerClassnames
                 ? containerClassnames.split(' ').filter(x => x !== '')
                 : '';
@@ -295,9 +296,14 @@ class Sidebar extends Component {
                 } else if (
                     currentClasses.includes('menu-default') &&
                     !currentClasses.includes('menu-sub-hidden') &&
-                    (menuClickCount === 1 || menuClickCount === 3)
+                    (menuClickCount === 1 || menuClickCount === 3 || menuClickCount === 0)
                 ) {
+                    console.log("I am here!");
                     this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
+                    this.props.addContainerClassname(
+                        'menu-sub-hidden',
+                        containerClassnames
+                    );
                 }
                 this.setState({
                     selectedParentMenu: selectedParent,

@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 
 import TopNav from "../containers/navs/Topnav";
 import Sidebar from "../containers/navs/Sidebar";
-import DateSlider from "../components/date-slider/date-slider.component";
 
 // import MapData from "../components/map/map.component";
 import Layers from '../components/layers/layers.component';

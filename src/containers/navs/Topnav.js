@@ -280,7 +280,7 @@ class TopNav extends Component {
                 </div>
 
                 {/* Логотип */}
-                <a className="navbar-logo" href="#">
+                <a id="navbar-logo" className="navbar-logo" href="#navbar-logo">
                     <span className="logo d-none d-xs-block" />
                     <span className="logo-mobile d-block d-xs-none" />
                 </a>
