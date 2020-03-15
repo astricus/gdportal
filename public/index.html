@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo-192x192.png">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
     <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <link rel="stylesheet" href="/assets/fonts/simple-line-icons/css/simple-line-icons.css">
@@ -27,23 +25,24 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Геопортал Камчатского края</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <noscript>JavaScript отключен. Необходимо включить JavaScript для корректной работы сайта.</noscript>
     <script>
-      var theme = "light.purple";
-      if (typeof Storage !== "undefined") {
-          if (localStorage.getItem("__theme_color")) {
-              theme = localStorage.getItem("__theme_color");
-          }
-      }
-      if(theme.indexOf("dark") != -1) {
-          document.documentElement.style.background = "#1b191b";
-      }
-  </script>
-  <div id="root">
-      <div class="loading"></div>
-  </div>
+        var theme = "light.purple";
+        if (typeof Storage !== "undefined") {
+            if (localStorage.getItem("__theme_color")) {
+                theme = localStorage.getItem("__theme_color");
+            }
+        }
+        if (theme.indexOf("dark") != -1) {
+            document.documentElement.style.background = "#1b191b";
+        }
+    </script>
+    <div id="root">
+        <div class="loading"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -54,5 +53,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
