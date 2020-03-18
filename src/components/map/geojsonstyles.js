@@ -1,7 +1,6 @@
 import L from 'leaflet';
 
 export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
-    // console.log("label = ", label);
 
     if (feature.id.includes("national_projects")) {
         if (calendarIsEnabled) {
@@ -383,13 +382,49 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
 
     }
 
-
-    return {
-        weight: 3,
-        fillOpacity: 1,
-        color: "#63b2df",
-        stroke: true,
+    if (feature.id.includes("ppimt")) {
+        if (feature.properties.type === "граница ППТ") {
+            return {
+                weight: 1,
+                fillOpacity: 0,
+                color: "#fb3b3b",
+                stroke: true,
+            }
+        }
+        if (feature.properties.type === "участок") {
+            return {
+                weight: 0.5,
+                fillOpacity: 0.7,
+                fillColor: "#81bcf3",
+                color: "#0000cd",
+                stroke: true,
+            }
+        }
+        if (feature.properties.type === "застройка") {
+            return {
+                weight: 1,
+                fillOpacity: 0,
+                color: "#6e514e",
+                stroke: true,
+            }
+        }
+        if (feature.properties.type === "ЛРЗ") {
+            return {
+                weight: 1,
+                fillOpacity: 0,
+                color: "#207720",
+                stroke: true,
+            }
+        }
     }
+
+
+    // return {
+    //     weight: 3,
+    //     fillOpacity: 1,
+    //     color: "#63b2df",
+    //     stroke: true,
+    // }
 };
 
 export const pointToLayer = (feature, latlng, curDate, calendarIsEnabled, label) => {
@@ -533,6 +568,94 @@ export const pointToLayer = (feature, latlng, curDate, calendarIsEnabled, label)
                     return L.marker(latlng, { icon: new L.Icon.Default() });
             }
         }
+    }
+    if (label === "menu.social_map.edu") {
+        var circleEdu = {
+            radius: 10,
+            fillColor: "#a6cee3",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleEdu);
+    }
+    if (label === "menu.social_map.culture") {
+        var circleCult = {
+            radius: 10,
+            fillColor: "#1f78b4",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleCult);
+    }
+    if (label === "menu.social_map.medicine") {
+        var circleMed = {
+            radius: 10,
+            fillColor: "#b2df8a",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleMed);
+    }
+    if (label === "menu.social_map.social-sec") {
+        var circleSoc = {
+            radius: 10,
+            fillColor: "#33a02c",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleSoc);
+    }
+    if (label === "menu.social_map.sport") {
+        var circleSpt = {
+            radius: 10,
+            fillColor: "#fb9a99",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleSpt);
+    }
+    if (label === "menu.social_map.garbage") {
+        var circleGbe = {
+            radius: 10,
+            fillColor: "#e31a1c",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleGbe);
+    }
+    if (label === "menu.social_map.common") {
+        var circleCmn = {
+            radius: 10,
+            fillColor: "#fdbf6f",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleCmn);
+    }
+    if (label === "menu.social_map.tourism") {
+        var circleTrm = {
+            radius: 10,
+            fillColor: "#ff7f00",
+            color: "#325780",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.9
+        };
+        return L.circleMarker(latlng, circleTrm);
     }
     else {
         return L.marker(latlng, { icon: new L.Icon.Default() });

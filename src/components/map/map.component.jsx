@@ -73,8 +73,7 @@ class MapData extends Component {
     };
 
     onEachFeature(feature, layer) {
-        console.log(feature);
-        if (feature.properties.class) {
+        if (feature.id.includes("functional_zone") && feature.properties.class) {
             layer.on('popupopen', () => {
                 this.setState({
                     feature: feature
@@ -86,6 +85,32 @@ class MapData extends Component {
                 this.setState({
                     feature: feature
                 });
+            });
+        }
+        if (feature.id.includes("ppimt")) {
+            layer.on('popupopen', () => {
+                this.setState({
+                    feature: feature
+                });
+            });
+        }
+        if (feature.id.includes("district") || feature.id.includes("municipal_structure")) {
+            const districtHover = {
+                weight: 5
+            }
+            const districtOut = {
+                weight: 2
+            }
+            layer.on({
+                'mouseover': (e) => {
+                    // console.log(feature);
+                    var layer = e.target;
+                    layer.setStyle(districtHover);
+                },
+                'mouseout': (e) => {
+                    var layer = e.target;
+                    layer.setStyle(districtOut);
+                }
             });
         }
         if (feature.geometry.type === "LineString") {
@@ -153,7 +178,6 @@ class MapData extends Component {
                         };
                         layer.on({
                             'mouseover': (e) => {
-                                console.log(curDate);
                                 var layer = e.target;
                                 layer.setStyle(roadStyleHover);
                             },
@@ -212,6 +236,30 @@ class MapData extends Component {
                         });
                     }
                 }
+                else {
+                    const roadStyle = {
+                        weight: 3,
+                        fillOpacity: 1,
+                        color: "#63b2df",
+                        stroke: true,
+                    }
+                    const roadStyleHover = {
+                        weight: 5,
+                        fillOpacity: 1,
+                        color: "#145388",
+                        stroke: true,
+                    }
+                    layer.on({
+                        'mouseover': (e) => {
+                            var layer = e.target;
+                            layer.setStyle(roadStyleHover);
+                        },
+                        'mouseout': (e) => {
+                            var layer = e.target;
+                            layer.setStyle(roadStyle);
+                        }
+                    });
+                }
             }
             else {
                 const roadStyle = {
@@ -237,6 +285,24 @@ class MapData extends Component {
                     }
                 });
             }
+        }
+        if (feature.id.includes("projects") && !feature.id.includes("national_projects")) {
+            const projectHover = {
+                weight: 5
+            }
+            const projectOut = {
+                weight: 3
+            }
+            layer.on({
+                'mouseover': (e) => {
+                    var layer = e.target;
+                    layer.setStyle(projectHover);
+                },
+                'mouseout': (e) => {
+                    var layer = e.target;
+                    layer.setStyle(projectOut);
+                }
+            });
         }
     };
 
@@ -327,7 +393,7 @@ class MapData extends Component {
                                 >
                                     <Popup>
                                         {
-                                            feature ? feature.properties.name ? (
+                                            feature ? feature.id.includes("projects") && feature.properties.name ? (
                                                 <div>
                                                     <p>{feature.properties.name}</p>
                                                     <Button
@@ -340,8 +406,22 @@ class MapData extends Component {
                                                         Подробнее
                                                 </Button>
                                                 </div>
+                                            ) : feature.id.includes("district") && item.key.includes("people-dens") ? (
+                                                <div>
+                                                    <p>{feature.properties.name}</p>
+                                                    <p>Плотность населения: {Math.round(1000 * feature.properties.density) / 1000} чел/км²</p>
+                                                </div>
+                                            ) : feature.id.includes("district") && item.key.includes("people-quan") ? (
+                                                <div>
+                                                    <p>{feature.properties.name}</p>
+                                                    <p>Население: {feature.properties.population} чел</p>
+                                                </div>
+                                            ) : feature.properties.name ? (
+                                                <p>{feature.properties.name}</p>
                                             ) : feature.properties.class ? (
                                                 <p>{feature.properties.class}</p>
+                                            ) : feature.properties.type ? (
+                                                <p>{feature.properties.type}</p>
                                             ) : null : null
                                         }
                                         <Modal
@@ -596,22 +676,22 @@ class MapData extends Component {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="stages-container">
-                                                    <h5>Национальные проекты</h5>
-                                                    <div className="stage">
-                                                        <p><img className="stage-marker" src="/assets/img/marker_health.svg" alt="Маркер" />Здравоохранение</p>
+                                                    <div className="stages-container">
+                                                        <h5>Национальные проекты</h5>
+                                                        <div className="stage">
+                                                            <p><img className="stage-marker" src="/assets/img/marker_health.svg" alt="Маркер" />Здравоохранение</p>
+                                                        </div>
+                                                        <div className="stage">
+                                                            <p><img className="stage-marker" src="/assets/img/marker_education.svg" alt="Маркер" />Образование</p>
+                                                        </div>
+                                                        <div className="stage">
+                                                            <p><img className="stage-marker" src="/assets/img/marker_demography.svg" alt="Маркер" />Демография</p>
+                                                        </div>
+                                                        <div className="stage">
+                                                            <p><img className="stage-marker" src="/assets/img/marker_road.svg" alt="Маркер" />Дороги</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="stage">
-                                                        <p><img className="stage-marker" src="/assets/img/marker_education.svg" alt="Маркер" />Образование</p>
-                                                    </div>
-                                                    <div className="stage">
-                                                        <p><img className="stage-marker" src="/assets/img/marker_demography.svg" alt="Маркер" />Демография</p>
-                                                    </div>
-                                                    <div className="stage">
-                                                        <p><img className="stage-marker" src="/assets/img/marker_road.svg" alt="Маркер" />Дороги</p>
-                                                    </div>
-                                                </div>
-                                            )
+                                                )
                                         }
 
                                         <div className="date-selector">
