@@ -36,22 +36,26 @@
 .leaflet-custom-icon {
     cursor: pointer;
     margin-top: -41px !important;
-    margin-left: -17px !important;
+    margin-left: -12px !important;
+    // border-bottom: 2px solid rgba(0,0,0,0.0);
+    transition: 0.2s;
+    &:hover {
+        // border-bottom: 2px solid rgba(0,0,0,0.1);
+        margin-top: -45px !important;
+    }
 }
 
 .date-selector {
-    width: 280px;
+    width: 100%;
     height: 360px;
     position: absolute;
-    right: 30px;
-    bottom: 30px;
-    background-color: #fff;
-    z-index: 1000;
-    border-radius: 12px;
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
-    @include respond-below(sm) {
-        display: none;
-    }
+    // right: 30px;
+    bottom: 0px;
+    padding: 0 10px;
+    // background-color: #fff;
+    // z-index: 1000;
+    // border-radius: 12px;
+    // box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
 
     &__center {
         text-align: center;
@@ -61,4 +65,19 @@
     &__opacity {
         opacity: 0.5;
     }
+}
+
+.stages-container {
+    padding: 15px 24px;
+
+    .stage {
+        width: 100%;
+        float: left;
+        .stage-marker {
+            width: 24px;
+            height: 36px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }   
 }

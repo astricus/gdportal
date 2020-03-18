@@ -300,10 +300,10 @@ class Sidebar extends Component {
                 ) {
                     console.log("I am here!");
                     this.props.setContainerClassnames(0, containerClassnames, hasSubMenu);
-                    this.props.addContainerClassname(
-                        'menu-sub-hidden',
-                        containerClassnames
-                    );
+                    // this.props.addContainerClassname(
+                    //     'menu-sub-hidden',
+                    //     containerClassnames
+                    // );
                 }
                 this.setState({
                     selectedParentMenu: selectedParent,

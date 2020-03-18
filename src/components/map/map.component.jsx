@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ApplicationMenu from "../common/ApplicationMenu";
 import { Map, TileLayer, GeoJSON, Popup } from 'react-leaflet';
 import { geoJSONStyle, pointToLayer } from './geojsonstyles';
 import Switch from "rc-switch";
@@ -22,7 +23,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 
-import { Colxx, Separator } from "../common/CustomBootstrap";
+import { Colxx } from "../common/CustomBootstrap";
 
 import "rc-switch/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,7 +42,7 @@ class MapData extends Component {
             zoom: 5,
             modalLarge: false,
             embeddedDate: new Date(),
-            calendarIsEnabled: true,
+            calendarIsEnabled: false,
         };
         this.onEachFeature = this.onEachFeature.bind(this);
     }
@@ -62,7 +63,6 @@ class MapData extends Component {
         this.setState({
             embeddedDate: date
         });
-        // this.forceUpdate();
     };
 
     toggleLarge = () => {
@@ -72,8 +72,10 @@ class MapData extends Component {
     };
 
     onEachFeature(feature, layer) {
+        // console.log(feature);
         if (feature.properties.class) {
             layer.on('popupopen', () => {
+                console.log(feature);
                 this.setState({
                     feature: feature
                 });
@@ -81,55 +83,41 @@ class MapData extends Component {
         }
         if (feature.properties.name) {
             layer.on('popupopen', () => {
+                console.log(feature);
                 this.setState({
                     feature: feature
                 });
             });
         }
-        // console.log(layer);
-        // return (
-        //     <Popup position={[layer._latlng.lat, layer._latlng.lng]}>
-        //         Here I am!
-        //     </Popup>
-        // );
-        // if (feature.properties.class) {
-        //     const popupContent = `
-        //     <div>
-        //         <p>${feature.properties.class}</p>
-        //         <button id="modal-btn-class" class="btn btn-outline-primary btn-xs">
-        //             <a id="modal.launch-modal">Подробнее</a>
-        //         </button>                    
-        //     </div>
-        //     `;
-        //     layer.bindPopup(popupContent).on('popupopen', (popup) => {
-        //         $("#modal-btn-class").click(function (event) {
-
-        //         })
-        //     });
-        // }
-
-        // if (feature.properties.name) {
-        //     const popupContent = `
-        //     <div>
-        //         <p>${feature.properties.name}</p>
-        //         <button id="modal-btn-name" class="btn btn-outline-primary btn-xs">
-        //             <a id="modal.launch-modal">Подробнее</a>
-        //         </button>
-        //     </div>
-        //     `;
-        //     layer.bindPopup(popupContent).on('popupopen', (popup, feature) => {
-        //         $("#modal-btn-name").click(function (event) {
-        //             $("#modal-title-id").text(feature.properties.name);
-        //             $("#exampleModal").modal('toggle');
-        //         })
-        //     });
-        // }
+        if (feature.geometry.type === "LineString") {
+            const roadStyle = {
+                weight: 3,
+                fillOpacity: 1,
+                color: "#63b2df",
+                stroke: true,
+            }
+            const roadStyleHover = {
+                weight: 5,
+                fillOpacity: 1,
+                color: "#145388",
+                stroke: true,
+            }
+            layer.on({
+                'mouseover': (e) => {
+                    var layer = e.target;
+                    layer.setStyle(roadStyleHover);
+                },
+                'mouseout': (e) => {
+                    var layer = e.target;
+                    layer.setStyle(roadStyle);
+                }
+            });
+        }
     };
 
     render() {
         const { layers, menuData } = this.props;
         const { embeddedDate, calendarIsEnabled, feature } = this.state;
-        console.log(feature);
         const position = [this.state.lat, this.state.lng];
         return (
             <div>
@@ -153,20 +141,28 @@ class MapData extends Component {
                                     key={item.key + embeddedDate.toString() + calendarIsEnabled.toString()}
                                     data={item.geojson}
                                     style={(feature) => geoJSONStyle(feature, item.key)}
-                                    pointToLayer={(feature, latlng) => pointToLayer(feature, latlng, embeddedDate, calendarIsEnabled)}
+                                    pointToLayer={(feature, latlng) => pointToLayer(feature, latlng, embeddedDate, calendarIsEnabled, item.key)}
                                     onEachFeature={this.onEachFeature}
                                 >
                                     <Popup>
-                                        <p>{feature ? feature.properties.name : ''}</p>
-                                        <Button
-                                            className="mr-2 mb-2"
-                                            color="primary"
-                                            size="xs"
-                                            outline
-                                            onClick={this.toggleLarge}
-                                        >
-                                            Подробнее
-                                        </Button>
+                                        {
+                                            feature ? feature.properties.name ? (
+                                                <div>
+                                                    <p>{feature.properties.name}</p>
+                                                    <Button
+                                                        className="mr-2 mb-2"
+                                                        color="primary"
+                                                        size="xs"
+                                                        outline
+                                                        onClick={this.toggleLarge}
+                                                    >
+                                                        Подробнее
+                                                </Button>
+                                                </div>
+                                            ) : feature.properties.class ? (
+                                                <p>{feature.properties.class}</p>
+                                            ) : null : null
+                                        }
                                         <Modal
                                             isOpen={this.state.modalLarge}
                                             size="lg"
@@ -218,7 +214,7 @@ class MapData extends Component {
                                                         <Card className="mb-4">
                                                             <CardBody>
                                                                 <CardTitle>
-                                                                <h2>Характеристики объекта</h2>
+                                                                    <h2>Характеристики объекта</h2>
                                                                 </CardTitle>
                                                                 <Row>
                                                                     <Colxx xxs="12" lg="6">
@@ -359,10 +355,9 @@ class MapData extends Component {
                                                         <Card className="mb-4">
                                                             <CardBody>
                                                                 <p>По вопросам обратной связи по данному проекту обращайтесь по следующей ссылке</p>
-                                                                <Button color="primary" outline size="sm">
-                                                                    <a href="https://www.kamgov.ru/" target="_blank
-">Правительство Камчатского края</a>
-                                                                </Button>
+                                                                <Button color="primary" outline href="https://www.kamgov.ru/" target="_blank" size="sm">
+                                                                    Правительство Камчатского края
+                                                                </Button>{' '}
                                                             </CardBody>
                                                         </Card>
                                                     </Colxx>
@@ -380,28 +375,51 @@ class MapData extends Component {
                         })
                     }
                 </Map>
+
                 {
                     menuData[0].subs.find(x => x.isVisible === true) ?
                         (
-                            <div className="date-selector">
-                                <div className="date-selector__center">
-                                    <Switch
-                                        className="custom-switch custom-switch-primary-inverse custom-switch-small"
-                                        checked={this.state.calendarIsEnabled}
-                                        onChange={(value, event) => this.handleSwitch(value, event)}
-                                    />
-                                    <div className={`${!this.state.calendarIsEnabled ? "date-selector__opacity" : ""}`}>
-                                        <DatePicker
-                                            key={'datepicker_' + this.state.calendarIsEnabled.toString()}
-                                            calendarClassName="embedded"
-                                            inline
-                                            fixedHeight
-                                            selected={this.state.embeddedDate}
-                                            onChange={this.handleChangeEmbedded} />
+                            <ApplicationMenu>
+                                <div className="stages-container">
+                                    <h5>Статус строительства</h5>
+                                    <div className="stage">
+                                    <p><img className="stage-marker" src="/assets/img/marker_complete.svg" alt="Завершен"/>
+                                        Построено</p>
+                                    </div>
+                                    <div className="stage">
+                                    <p><img className="stage-marker" src="/assets/img/marker_inprocess.svg" alt="Завершен"/>
+                                        Этап в процессе</p>
+                                    </div>
+                                    <div className="stage">
+                                    <p><img className="stage-marker" src="/assets/img/marker_stage_danger.svg" alt="Завершен"/>
+                                        Этап просрочен</p>
+                                    </div>
+                                    <div className="stage">
+                                    <p><img className="stage-marker" src="/assets/img/marker_danger.svg" alt="Завершен"/>
+                                        Сдача просрочена</p>
                                     </div>
                                 </div>
-                            </div>
+                                <div className="date-selector">
+                                    <div className="date-selector__center">
+                                        <Switch
+                                            className="custom-switch custom-switch-primary-inverse custom-switch-small"
+                                            checked={this.state.calendarIsEnabled}
+                                            onChange={(value, event) => this.handleSwitch(value, event)}
+                                        />
+                                        <div className={`${!this.state.calendarIsEnabled ? "date-selector__opacity" : ""}`}>
+                                            <DatePicker
+                                                key={'datepicker_' + this.state.calendarIsEnabled.toString()}
+                                                calendarClassName="embedded"
+                                                inline
+                                                fixedHeight
+                                                selected={this.state.embeddedDate}
+                                                onChange={this.handleChangeEmbedded} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </ApplicationMenu>
                         ) : (<div />)
+
                 }
             </div>
         );

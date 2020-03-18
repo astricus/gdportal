@@ -1,9 +1,10 @@
 .app-menu {
-    z-index: 1;
+    z-index: 1000;
     @include depth(1);
     width: $app-menu-width;
     float: right;
     background: $foreground-color;
+    transform: translateX($app-menu-width);
     transition: transform $menu-collapse-time;
     height: calc(100% - #{$navbar-height});
     position: fixed;
@@ -17,7 +18,6 @@
   
     @include respond-below(lg) {
       top: $navbar-height-md;
-      transform: translateX($app-menu-width);
       height: calc(100% - #{$navbar-height-md});
     }
   

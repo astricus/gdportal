@@ -321,6 +321,10 @@ export const geoJSONStyle = (feature, label) => {
         // }
     }
 
+    if (label === "menu.nat_proj.roads" || "menu.transport_map.uds") {
+        
+    }
+
 
     return {
         weight: 3,
@@ -330,34 +334,145 @@ export const geoJSONStyle = (feature, label) => {
     }
 };
 
-export const pointToLayer = (feature, latlng, curDate, calendarIsEnabled) => {
+export const pointToLayer = (feature, latlng, curDate, calendarIsEnabled, label) => {
 
 
-    // цвет в зависимости от даты
+    // маркер в зависимости от даты и готовности проекта/этапа
     if (feature.properties.event_time && calendarIsEnabled) {
-        const expDate = new Date(feature.properties.event_time.replace('Z', ''));
-        if (expDate < curDate) {
+        const konkursReady = feature.properties.konkurs_ready;
+        const expertReady = feature.properties.expert_ready;
+        const stroyReady = feature.properties.stroy_ready;
+        const eventTimeReady = feature.properties.event_time_ready;
+        const konkursDate = new Date(feature.properties.konkurs_plan.replace('Z', ''));
+        const expertDate = new Date(feature.properties.expert_plan.replace('Z', ''));
+        const stroyDate = new Date(feature.properties.stroy_plan.replace('Z', ''));
+        const evntDate = new Date(feature.properties.event_time.replace('Z', '')); // дата окончания
+        // этап просрочен
+        const konkursDanger = konkursReady === false && curDate > konkursDate;
+        const expertDanger = expertReady === false && curDate > expertDate;
+        const stroyDanger = stroyReady === false && curDate > stroyDate;
+        // Этап в процессе
+        const konkursInProcess = konkursReady === false && curDate <= konkursDate;
+        const expertInProcess = expertReady === false && curDate <= expertDate;
+        const stroyInProcess = stroyReady === false && curDate <= stroyDate;
+        // Сдача просрочена
+        const danger = eventTimeReady === false && curDate > evntDate;
+        // Объект построен
+        const success = eventTimeReady === true;
+        // const inProcess = ( konkursReady || expertReady || stroyReady ) &&
+        //                   ( curDate > konkursDate || );
+        if (danger) {
             var iconDanger = new L.Icon({
-                iconUrl: require('../../assets/marker-health.svg'),
-                iconRetinaUrl: require('../../assets/marker-health.svg'),
-                iconSize: new L.Point(34, 41),
-                popupAnchor:  [1, -23],
+                iconUrl: require('../../assets/marker_danger.svg'),
+                iconRetinaUrl: require('../../assets/marker_danger.svg'),
+                shadowUrl: require('../../assets/marker_shadow.png'),
+                iconSize: new L.Point(25, 41),
+                popupAnchor: [1, -26],
                 className: 'leaflet-custom-icon'
             });
             return L.marker(latlng, { icon: iconDanger });
         }
-        else {
-            var iconPrimary = new L.Icon({
-                iconUrl: require('../../assets/marker-education.svg'),
-                iconRetinaUrl: require('../../assets/marker-education.svg'),
-                iconSize: new L.Point(34, 41),
-                popupAnchor:  [1, -23],
+        else if (konkursDanger || expertDanger || stroyDanger) {
+            var iconStageDanger = new L.Icon({
+                iconUrl: require('../../assets/marker_stage_danger.svg'),
+                iconRetinaUrl: require('../../assets/marker_stage_danger.svg'),
+                shadowUrl: require('../../assets/marker_shadow.png'),
+                iconSize: new L.Point(25, 41),
+                popupAnchor: [1, -26],
                 className: 'leaflet-custom-icon'
             });
-            return L.marker(latlng, { icon: iconPrimary });
+            return L.marker(latlng, { icon: iconStageDanger });
+        }
+        else if (konkursInProcess || expertInProcess || stroyInProcess) {
+            var iconInProcess = new L.Icon({
+                iconUrl: require('../../assets/marker_inprocess.svg'),
+                iconRetinaUrl: require('../../assets/marker_inprocess.svg'),
+                shadowUrl: require('../../assets/marker_shadow.png'),
+                iconSize: new L.Point(25, 41),
+                popupAnchor: [1, -26],
+                className: 'leaflet-custom-icon'
+            });
+            return L.marker(latlng, { icon: iconInProcess });
+        }
+        else if (success) {
+            var iconComplete = new L.Icon({
+                iconUrl: require('../../assets/marker_complete.svg'),
+                iconRetinaUrl: require('../../assets/marker_complete.svg'),
+                shadowUrl: require('../../assets/marker_shadow.png'),
+                iconSize: new L.Point(25, 41),
+                popupAnchor: [1, -26],
+                className: 'leaflet-custom-icon'
+            });
+            return L.marker(latlng, { icon: iconComplete });
         }
     }
     else {
-        return L.marker(latlng, { icon: new L.Icon.Default() });
+        // return L.marker(latlng, { icon: new L.Icon.Default() });
+        switch (label) {
+            // Сталь маркеров для нац. проекта здравоохранение
+            case 'menu.nat_proj.health':
+                var iconHealth = new L.Icon({
+                    iconUrl: require('../../assets/marker_health.svg'),
+                    iconRetinaUrl: require('../../assets/marker_health.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconHealth });
+            case 'menu.nat_proj.culture':
+                var iconCulture = new L.Icon({
+                    iconUrl: require('../../assets/marker_culture.svg'),
+                    iconRetinaUrl: require('../../assets/marker_culture.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconCulture });
+            case 'menu.nat_proj.education':
+                var iconEducation = new L.Icon({
+                    iconUrl: require('../../assets/marker_education.svg'),
+                    iconRetinaUrl: require('../../assets/marker_education.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconEducation });
+            case 'menu.nat_proj.demography':
+                var iconDemography = new L.Icon({
+                    iconUrl: require('../../assets/marker_demography.svg'),
+                    iconRetinaUrl: require('../../assets/marker_demography.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconDemography });
+            case 'menu.nat_proj.city-objects':
+                var iconPublic = new L.Icon({
+                    iconUrl: require('../../assets/marker_public.svg'),
+                    iconRetinaUrl: require('../../assets/marker_public.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconPublic });
+            case 'menu.nat_proj.ecology':
+                var iconEcology = new L.Icon({
+                    iconUrl: require('../../assets/marker_ecology.svg'),
+                    iconRetinaUrl: require('../../assets/marker_ecology.svg'),
+                    shadowUrl: require('../../assets/marker_shadow.png'),
+                    iconSize: new L.Point(25, 41),
+                    popupAnchor: [1, -26],
+                    className: 'leaflet-custom-icon'
+                });
+                return L.marker(latlng, { icon: iconEcology });
+            default:
+                return L.marker(latlng, { icon: new L.Icon.Default() });
+        }
     }
+
 }

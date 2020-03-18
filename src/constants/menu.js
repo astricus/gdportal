@@ -298,7 +298,7 @@ const data = [
             {
                 icon: "simple-icon-plus",
                 label: "menu.city_docs.ppmit",
-                layer: "",
+                layer: "kamchatka:ppimt_view",
                 item: "layer",
                 isVisible: false,
                 to: "#"
