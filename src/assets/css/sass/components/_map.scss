@@ -48,9 +48,9 @@
 .date-selector {
     width: 100%;
     height: 360px;
-    position: absolute;
+    position: relative;
     // right: 30px;
-    bottom: 0px;
+    // bottom: 0px;
     padding: 0 10px;
     // background-color: #fff;
     // z-index: 1000;
@@ -67,11 +67,17 @@
     }
 }
 
+.right-scroll {
+    height: 100%;
+    padding: 10px 0;
+}
+
 .stages-container {
-    padding: 15px 24px;
+    padding: 10px 24px;
 
     .stage {
         width: 100%;
+        height: 52px;
         float: left;
         .stage-marker {
             width: 24px;

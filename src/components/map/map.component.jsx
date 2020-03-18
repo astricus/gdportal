@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ApplicationMenu from "../common/ApplicationMenu";
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Map, TileLayer, GeoJSON, Popup } from 'react-leaflet';
 import { geoJSONStyle, pointToLayer } from './geojsonstyles';
 import Switch from "rc-switch";
@@ -90,28 +91,154 @@ class MapData extends Component {
             });
         }
         if (feature.geometry.type === "LineString") {
-            const roadStyle = {
-                weight: 3,
-                fillOpacity: 1,
-                color: "#63b2df",
-                stroke: true,
-            }
-            const roadStyleHover = {
-                weight: 5,
-                fillOpacity: 1,
-                color: "#145388",
-                stroke: true,
-            }
-            layer.on({
-                'mouseover': (e) => {
-                    var layer = e.target;
-                    layer.setStyle(roadStyleHover);
-                },
-                'mouseout': (e) => {
-                    var layer = e.target;
-                    layer.setStyle(roadStyle);
+            if (feature.id.includes("national_projects")) {
+                if (this.state.calendarIsEnabled) {
+                    const curDate = this.state.embeddedDate;
+                    const konkursReady = feature.properties.konkurs_ready;
+                    const expertReady = feature.properties.expert_ready;
+                    const stroyReady = feature.properties.stroy_ready;
+                    const eventTimeReady = feature.properties.event_time_ready;
+                    const konkursDate = new Date(feature.properties.konkurs_plan.replace('Z', ''));
+                    const expertDate = new Date(feature.properties.expert_plan.replace('Z', ''));
+                    const stroyDate = new Date(feature.properties.stroy_plan.replace('Z', ''));
+                    const evntDate = new Date(feature.properties.event_time.replace('Z', '')); // дата окончания
+                    // этап просрочен
+                    const konkursDanger = konkursReady === false && curDate > konkursDate;
+                    const expertDanger = expertReady === false && curDate > expertDate;
+                    const stroyDanger = stroyReady === false && curDate > stroyDate;
+                    // Этап в процессе
+                    const konkursInProcess = konkursReady === false && curDate <= konkursDate;
+                    const expertInProcess = expertReady === false && curDate <= expertDate;
+                    const stroyInProcess = stroyReady === false && curDate <= stroyDate;
+                    // Сдача просрочена
+                    const danger = eventTimeReady === false && curDate > evntDate;
+                    // Объект построен
+                    const success = eventTimeReady === true;
+                    // const inProcess = ( konkursReady || expertReady || stroyReady ) &&
+                    //                   ( curDate > konkursDate || );
+                    if (danger) {
+                        const roadStyle = {
+                            weight: 3,
+                            fillOpacity: 1,
+                            color: "#E3393D",
+                            stroke: true,
+                        };
+                        const roadStyleHover = {
+                            weight: 5,
+                            fillOpacity: 1,
+                            color: "#E3393D",
+                            stroke: true,
+                        };
+                        layer.on({
+                            'mouseover': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyleHover);
+                            },
+                            'mouseout': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyle);
+                            }
+                        });
+                    }
+                    else if (konkursDanger || expertDanger || stroyDanger) {
+                        const roadStyle = {
+                            weight: 3,
+                            fillOpacity: 1,
+                            color: "#FB8D2C",
+                            stroke: true,
+                        };
+                        const roadStyleHover = {
+                            weight: 5,
+                            fillOpacity: 1,
+                            color: "#FB8D2C",
+                            stroke: true,
+                        };
+                        layer.on({
+                            'mouseover': (e) => {
+                                console.log(curDate);
+                                var layer = e.target;
+                                layer.setStyle(roadStyleHover);
+                            },
+                            'mouseout': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyle);
+                            }
+                        });
+                    }
+                    else if (konkursInProcess || expertInProcess || stroyInProcess) {
+                        const roadStyle = {
+                            weight: 3,
+                            fillOpacity: 1,
+                            color: "#B1DE85",
+                            stroke: true,
+                        }
+                        const roadStyleHover = {
+                            weight: 5,
+                            fillOpacity: 1,
+                            color: "#B1DE85",
+                            stroke: true,
+                        };
+                        layer.on({
+                            'mouseover': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyleHover);
+                            },
+                            'mouseout': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyle);
+                            }
+                        });
+                    }
+                    else if (success) {
+                        const roadStyle = {
+                            weight: 3,
+                            fillOpacity: 1,
+                            color: "#3AAD35",
+                            stroke: true,
+                        }
+                        const roadStyleHover = {
+                            weight: 5,
+                            fillOpacity: 1,
+                            color: "#3AAD35",
+                            stroke: true,
+                        };
+                        layer.on({
+                            'mouseover': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyleHover);
+                            },
+                            'mouseout': (e) => {
+                                var layer = e.target;
+                                layer.setStyle(roadStyle);
+                            }
+                        });
+                    }
                 }
-            });
+            }
+            else {
+                const roadStyle = {
+                    weight: 3,
+                    fillOpacity: 1,
+                    color: "#63b2df",
+                    stroke: true,
+                }
+                const roadStyleHover = {
+                    weight: 5,
+                    fillOpacity: 1,
+                    color: "#145388",
+                    stroke: true,
+                }
+                layer.on({
+                    'mouseover': (e) => {
+                        var layer = e.target;
+                        layer.setStyle(roadStyleHover);
+                    },
+                    'mouseout': (e) => {
+                        var layer = e.target;
+                        layer.setStyle(roadStyle);
+                    }
+                });
+            }
         }
     };
 
@@ -140,7 +267,7 @@ class MapData extends Component {
                                 <GeoJSON
                                     key={item.key + embeddedDate.toString() + calendarIsEnabled.toString()}
                                     data={item.geojson}
-                                    style={(feature) => geoJSONStyle(feature, item.key)}
+                                    style={(feature) => geoJSONStyle(feature, item.key, embeddedDate, calendarIsEnabled)}
                                     pointToLayer={(feature, latlng) => pointToLayer(feature, latlng, embeddedDate, calendarIsEnabled, item.key)}
                                     onEachFeature={this.onEachFeature}
                                 >
@@ -380,44 +507,51 @@ class MapData extends Component {
                     menuData[0].subs.find(x => x.isVisible === true) ?
                         (
                             <ApplicationMenu>
-                                <div className="stages-container">
-                                    <h5>Статус строительства</h5>
-                                    <div className="stage">
-                                    <p><img className="stage-marker" src="/assets/img/marker_complete.svg" alt="Завершен"/>
+                                <div className="right-scroll">
+                                    <PerfectScrollbar
+                                        options={{ suppressScrollX: true, wheelPropagation: false }}
+                                    >
+                                        <div className="stages-container">
+                                            <h5>Статус строительства</h5>
+                                            <div className="stage">
+                                                <p><img className="stage-marker" src="/assets/img/marker_complete.svg" alt="Завершен" />
                                         Построено</p>
-                                    </div>
-                                    <div className="stage">
-                                    <p><img className="stage-marker" src="/assets/img/marker_inprocess.svg" alt="Завершен"/>
+                                            </div>
+                                            <div className="stage">
+                                                <p><img className="stage-marker" src="/assets/img/marker_inprocess.svg" alt="Завершен" />
                                         Этап в процессе</p>
-                                    </div>
-                                    <div className="stage">
-                                    <p><img className="stage-marker" src="/assets/img/marker_stage_danger.svg" alt="Завершен"/>
+                                            </div>
+                                            <div className="stage">
+                                                <p><img className="stage-marker" src="/assets/img/marker_stage_danger.svg" alt="Завершен" />
                                         Этап просрочен</p>
-                                    </div>
-                                    <div className="stage">
-                                    <p><img className="stage-marker" src="/assets/img/marker_danger.svg" alt="Завершен"/>
+                                            </div>
+                                            <div className="stage">
+                                                <p><img className="stage-marker" src="/assets/img/marker_danger.svg" alt="Завершен" />
                                         Сдача просрочена</p>
-                                    </div>
-                                </div>
-                                <div className="date-selector">
-                                    <div className="date-selector__center">
-                                        <Switch
-                                            className="custom-switch custom-switch-primary-inverse custom-switch-small"
-                                            checked={this.state.calendarIsEnabled}
-                                            onChange={(value, event) => this.handleSwitch(value, event)}
-                                        />
-                                        <div className={`${!this.state.calendarIsEnabled ? "date-selector__opacity" : ""}`}>
-                                            <DatePicker
-                                                key={'datepicker_' + this.state.calendarIsEnabled.toString()}
-                                                calendarClassName="embedded"
-                                                inline
-                                                fixedHeight
-                                                selected={this.state.embeddedDate}
-                                                onChange={this.handleChangeEmbedded} />
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div className="date-selector">
+                                            <div className="date-selector__center">
+                                                <Switch
+                                                    className="custom-switch custom-switch-primary-inverse custom-switch-small"
+                                                    checked={this.state.calendarIsEnabled}
+                                                    onChange={(value, event) => this.handleSwitch(value, event)}
+                                                />
+                                                <div className={`${!this.state.calendarIsEnabled ? "date-selector__opacity" : ""}`}>
+                                                    <DatePicker
+                                                        key={'datepicker_' + this.state.calendarIsEnabled.toString()}
+                                                        calendarClassName="embedded"
+                                                        inline
+                                                        fixedHeight
+                                                        selected={this.state.embeddedDate}
+                                                        onChange={this.handleChangeEmbedded} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </PerfectScrollbar>
                                 </div>
                             </ApplicationMenu>
+
                         ) : (<div />)
 
                 }
