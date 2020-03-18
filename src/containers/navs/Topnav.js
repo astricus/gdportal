@@ -324,7 +324,7 @@ class TopNav extends Component {
                             </DropdownToggle>
                             <DropdownMenu className="mt-3" right>
                                 <DropdownItem>FAQ</DropdownItem>
-                                <DropdownItem>Сайт правительства</DropdownItem>
+                                <DropdownItem><a href="https://www.kamgov.ru/" target="_blank" rel="noopener noreferrer">Сайт правительства</a></DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>

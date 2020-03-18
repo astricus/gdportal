@@ -5,7 +5,7 @@ const data = [
         label: "menu.nat_proj",
         to: "#",
         item: "layers",
-        isVisible: true,
+        isVisible: false,
         subs: [
             {
                 icon: "simple-icon-plus",
@@ -36,7 +36,7 @@ const data = [
                 label: "menu.nat_proj.culture",
                 layer: "kamchatka:culture_national_projects",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -52,7 +52,7 @@ const data = [
                 label: "menu.nat_proj.city-objects",
                 layer: "kamchatka:public_national_projects",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -60,7 +60,7 @@ const data = [
                 label: "menu.nat_proj.ecology",
                 layer: "kamchatka:waste_facility_national_projects",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -68,7 +68,7 @@ const data = [
                 label: "menu.nat_proj.science",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -76,7 +76,7 @@ const data = [
                 label: "menu.nat_proj.enterpr",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -84,7 +84,7 @@ const data = [
                 label: "menu.nat_proj.digital",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -92,7 +92,7 @@ const data = [
                 label: "menu.nat_proj.labour",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -100,7 +100,7 @@ const data = [
                 label: "menu.nat_proj.export",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             },
             {
@@ -108,7 +108,7 @@ const data = [
                 label: "menu.nat_proj.infrastructure",
                 layer: "",
                 item: "layer",
-                isVisible: true,
+                isVisible: false,
                 to: "#"
             }
         ]

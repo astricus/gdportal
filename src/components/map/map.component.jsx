@@ -73,10 +73,9 @@ class MapData extends Component {
     };
 
     onEachFeature(feature, layer) {
-        // console.log(feature);
+        console.log(feature);
         if (feature.properties.class) {
             layer.on('popupopen', () => {
-                console.log(feature);
                 this.setState({
                     feature: feature
                 });
@@ -84,7 +83,6 @@ class MapData extends Component {
         }
         if (feature.properties.name) {
             layer.on('popupopen', () => {
-                console.log(feature);
                 this.setState({
                     feature: feature
                 });
@@ -238,6 +236,62 @@ class MapData extends Component {
                         layer.setStyle(roadStyle);
                     }
                 });
+            }
+        }
+    };
+
+    stage(feature) {
+        if (feature.id.includes("national_projects")) {
+            const curDate = this.state.embeddedDate;
+            const konkursReady = feature.properties.konkurs_ready;
+            const expertReady = feature.properties.expert_ready;
+            const stroyReady = feature.properties.stroy_ready;
+            const eventTimeReady = feature.properties.event_time_ready;
+            const konkursDate = new Date(feature.properties.konkurs_plan.replace('Z', ''));
+            const expertDate = new Date(feature.properties.expert_plan.replace('Z', ''));
+            const stroyDate = new Date(feature.properties.stroy_plan.replace('Z', ''));
+            const evntDate = new Date(feature.properties.event_time.replace('Z', '')); // дата окончания
+            // этап просрочен
+            const konkursDanger = konkursReady === false && curDate > konkursDate;
+            const expertDanger = expertReady === false && curDate > expertDate;
+            const stroyDanger = stroyReady === false && curDate > stroyDate;
+            // Этап в процессе
+            const konkursInProcess = konkursReady === false && curDate <= konkursDate;
+            const expertInProcess = expertReady === false && curDate <= expertDate;
+            const stroyInProcess = stroyReady === false && curDate <= stroyDate;
+            // Сдача просрочена
+            const danger = eventTimeReady === false && curDate > evntDate;
+            // Объект построен
+            const success = eventTimeReady === true;
+            // const inProcess = ( konkursReady || expertReady || stroyReady ) &&
+            //                   ( curDate > konkursDate || );
+            if (danger) {
+                return (<b class="text-danger">Сдача просрочена</b>);
+            }
+            else if (konkursDanger || expertDanger || stroyDanger) {
+                if (konkursDanger) {
+                    return (<b class="text-danger">Конкурс просрочен</b>);
+                };
+                if (expertDanger) {
+                    return (<b class="text-danger">Экспертиза просрочена</b>);
+                };
+                if (stroyDanger) {
+                    return (<b class="text-danger">Строительство просрочено</b>);
+                };
+            }
+            else if (konkursInProcess || expertInProcess || stroyInProcess) {
+                if (konkursInProcess) {
+                    return "Проходит конкурс";
+                };
+                if (expertInProcess) {
+                    return "Проходит экспертиза";
+                };
+                if (stroyInProcess) {
+                    return "Проходит строительство";
+                };
+            }
+            else if (success) {
+                return "Проект сдан";
             }
         }
     };
@@ -429,60 +483,73 @@ class MapData extends Component {
                                                                                 </div>
                                                                             ) : null : null
                                                                         }
+                                                                        {
+                                                                            feature ? feature.id.includes("national_projects") ? (
+                                                                                <div>
+                                                                                    <p className="text-muted no-margin-bottom">Этап</p>
+                                                                                    <p>{this.stage(feature)}</p>
+                                                                                </div>
+                                                                            ) : null : null
+                                                                        }
                                                                     </Colxx>
                                                                 </Row>
                                                             </CardBody>
                                                         </Card>
                                                     </Colxx>
                                                 </Row>
-                                                <Row>
-                                                    {
-                                                        feature ? feature.properties.funding_amount || feature.properties.source ? (
+                                                {
+                                                    feature ? feature.id.includes("national_projects") ? (
+                                                        <Row>
+                                                            {
+                                                                feature ? feature.properties.funding_amount || feature.properties.source ? (
+                                                                    <Colxx md="12" lg="6">
+                                                                        <Card className="mb-4">
+                                                                            <CardBody>
+                                                                                {
+                                                                                    feature ? feature.properties.funding_amount ? (
+                                                                                        <div>
+                                                                                            <p className="text-muted no-margin-bottom">Финансирование</p>
+                                                                                            <p>Объем - {feature.properties.funding_amount} т.р.</p>
+                                                                                        </div>
+                                                                                    ) : null : null
+                                                                                }
+                                                                                {
+                                                                                    feature ? feature.properties.source ? (
+                                                                                        <div>
+                                                                                            <p className="text-muted no-margin-bottom">Источник</p>
+                                                                                            <p>{feature.properties.source}</p>
+                                                                                        </div>
+                                                                                    ) : null : null
+                                                                                }
+                                                                            </CardBody>
+                                                                        </Card>
+                                                                    </Colxx>
+                                                                ) : null : null
+                                                            }
                                                             <Colxx md="12" lg="6">
                                                                 <Card className="mb-4">
                                                                     <CardBody>
                                                                         {
-                                                                            feature ? feature.properties.funding_amount ? (
+                                                                            feature ? feature.properties.event_time ? (
                                                                                 <div>
-                                                                                    <p className="text-muted no-margin-bottom">Финансирование</p>
-                                                                                    <p>Объем - {feature.properties.funding_amount} т.р.</p>
-                                                                                </div>
-                                                                            ) : null : null
-                                                                        }
-                                                                        {
-                                                                            feature ? feature.properties.source ? (
-                                                                                <div>
-                                                                                    <p className="text-muted no-margin-bottom">Источник</p>
-                                                                                    <p>{feature.properties.source}</p>
+                                                                                    <p className="text-muted no-margin-bottom">Срок сдачи объекта</p>
+                                                                                    <p>{this.convertDate(feature.properties.event_time)}</p>
                                                                                 </div>
                                                                             ) : null : null
                                                                         }
                                                                     </CardBody>
                                                                 </Card>
                                                             </Colxx>
-                                                        ) : null : null
-                                                    }
-                                                    <Colxx md="12" lg="6">
-                                                        <Card className="mb-4">
-                                                            <CardBody>
-                                                                {
-                                                                    feature ? feature.properties.event_time ? (
-                                                                        <div>
-                                                                            <p className="text-muted no-margin-bottom">Срок сдачи объекта</p>
-                                                                            <p>{this.convertDate(feature.properties.event_time)}</p>
-                                                                        </div>
-                                                                    ) : null : null
-                                                                }
-                                                            </CardBody>
-                                                        </Card>
-                                                    </Colxx>
-                                                </Row>
+                                                        </Row>
+                                                    ) : null : null
+                                                }
+
                                                 <Row>
                                                     <Colxx xxs="12">
                                                         <Card className="mb-4">
                                                             <CardBody>
                                                                 <p>По вопросам обратной связи по данному проекту обращайтесь по следующей ссылке</p>
-                                                                <Button color="primary" outline href="https://www.kamgov.ru/" target="_blank" size="sm">
+                                                                <Button color="primary" outline href="https://www.kamgov.ru/" target="_blank" rel="noopener noreferrer" size="sm">
                                                                     Правительство Камчатского края
                                                                 </Button>{' '}
                                                             </CardBody>
@@ -511,25 +578,42 @@ class MapData extends Component {
                                     <PerfectScrollbar
                                         options={{ suppressScrollX: true, wheelPropagation: false }}
                                     >
-                                        <div className="stages-container">
-                                            <h5>Статус строительства</h5>
-                                            <div className="stage">
-                                                <p><img className="stage-marker" src="/assets/img/marker_complete.svg" alt="Завершен" />
-                                        Построено</p>
-                                            </div>
-                                            <div className="stage">
-                                                <p><img className="stage-marker" src="/assets/img/marker_inprocess.svg" alt="Завершен" />
-                                        Этап в процессе</p>
-                                            </div>
-                                            <div className="stage">
-                                                <p><img className="stage-marker" src="/assets/img/marker_stage_danger.svg" alt="Завершен" />
-                                        Этап просрочен</p>
-                                            </div>
-                                            <div className="stage">
-                                                <p><img className="stage-marker" src="/assets/img/marker_danger.svg" alt="Завершен" />
-                                        Сдача просрочена</p>
-                                            </div>
-                                        </div>
+                                        {
+                                            this.state.calendarIsEnabled ? (
+                                                <div className="stages-container">
+                                                    <h5>Статус строительства</h5>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_complete.svg" alt="Маркер" />Построено</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_inprocess.svg" alt="Маркер" />Этап в процессе</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_stage_danger.svg" alt="Маркер" />Этап просрочен</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_danger.svg" alt="Маркер" />Сдача просрочена</p>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="stages-container">
+                                                    <h5>Национальные проекты</h5>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_health.svg" alt="Маркер" />Здравоохранение</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_education.svg" alt="Маркер" />Образование</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_demography.svg" alt="Маркер" />Демография</p>
+                                                    </div>
+                                                    <div className="stage">
+                                                        <p><img className="stage-marker" src="/assets/img/marker_road.svg" alt="Маркер" />Дороги</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+
                                         <div className="date-selector">
                                             <div className="date-selector__center">
                                                 <Switch
