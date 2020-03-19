@@ -99,11 +99,10 @@ class MapData extends Component {
                 weight: 5
             }
             const districtOut = {
-                weight: 2
+                weight: 3
             }
             layer.on({
                 'mouseover': (e) => {
-                    // console.log(feature);
                     var layer = e.target;
                     layer.setStyle(districtHover);
                 },
@@ -363,11 +362,12 @@ class MapData extends Component {
     };
 
     render() {
-        const { layers, menuData } = this.props;
+        const { layers, loading, menuData } = this.props;
         const { embeddedDate, calendarIsEnabled, feature } = this.state;
         const position = [this.state.lat, this.state.lng];
         return (
             <div>
+                
                 <Map center={position} zoom={this.state.zoom}
                     minZoom={0}
                     maxZoom={19} zoomControl={false}>
@@ -381,6 +381,7 @@ class MapData extends Component {
                         // url="//tilessputnik.ru/{z}/{x}/{y}.png?from_api=v0.3"
                         key='main_tile_layer'
                     />
+                    {loading ? (<div className="loading" />) : null}
                     {
                         layers.length && layers.map((item, index) => {
                             return (

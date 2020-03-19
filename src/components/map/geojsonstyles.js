@@ -65,7 +65,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         const { population } = feature.properties;
         if (population > 0 && population <= 2500) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#edf8fb",
@@ -74,7 +74,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (population > 2500 && population <= 5000) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#b2e2e2",
@@ -83,7 +83,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (population > 500 && population <= 10000) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#66c2a4",
@@ -92,7 +92,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (population > 10000 && population <= 15000) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#2ca25f",
@@ -101,7 +101,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (population > 15000 && population <= 65000) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#006d2c",
@@ -115,7 +115,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         const { density } = feature.properties;
         if (density > 0 && density <= 0.05) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#eff3ff",
@@ -124,7 +124,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (density > 0.05 && density <= 0.1) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#bae0f5",
@@ -133,7 +133,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (density > 0.1 && density <= 0.15) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#6baed6",
@@ -142,7 +142,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (density > 0.15 && density <= 0.5) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#3182bd",
@@ -151,7 +151,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
         if (density > 0.5 && density <= 1.6) {
             return {
-                weight: 2,
+                weight: 3,
                 fillOpacity: 0.7,
                 color: "#599ce3",
                 fillColor: "#08519c",
@@ -163,7 +163,7 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
     // просто district обводка обводка 0.2 #599ce3  заливка #27a5e3 прозрачность 0.3:
     if (label === "menu.admin_map.regions") {
         return {
-            weight: 2,
+            weight: 3,
             fillOpacity: 0.3,
             color: "#599ce3",
             fillColor: "#27a5e3",
@@ -418,13 +418,6 @@ export const geoJSONStyle = (feature, label, curDate, calendarIsEnabled) => {
         }
     }
 
-
-    // return {
-    //     weight: 3,
-    //     fillOpacity: 1,
-    //     color: "#63b2df",
-    //     stroke: true,
-    // }
 };
 
 export const pointToLayer = (feature, latlng, curDate, calendarIsEnabled, label) => {

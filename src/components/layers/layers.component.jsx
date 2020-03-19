@@ -10,12 +10,16 @@ class Layers extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             layers: []
         }
         this.updateLayers = this.updateLayers.bind(this);
     }
 
     updateLayers = async () => {
+        this.setState({
+            loading: true
+        });
         const layers = [];
         // const url = 'http://188.225.36.82:8080/geoserver/wfs?service=wfs&version=2.0.0';
         const url = 'https://gdportal.ru/geoserver/wfs?service=wfs&version=2.0.0';
@@ -30,7 +34,7 @@ class Layers extends React.Component {
                     if (sub.layer && sub.isVisible) {
                         const getRequest = url + request + tnames + sub.layer + projection + format;
                         const response = await axios.get(getRequest);
-                        layers.push({ 
+                        layers.push({
                             geojson: response.data,
                             key: sub.label
                         });
@@ -39,7 +43,8 @@ class Layers extends React.Component {
             }
         }
         this.setState({
-            layers: layers
+            layers: layers,
+            loading: false
         });
     }
 
@@ -54,16 +59,16 @@ class Layers extends React.Component {
     };
 
     render() {
-        return <MapData layers={this.state.layers} />
+        return <MapData loading={this.state.loading} layers={this.state.layers} />
     }
 };
 
-const mapStateToProps = ({ menu }) => {
+const mapStateToProps = ({ menu}) => {
     const {
-        menuData
-    } = menu;
+                    menuData
+                } = menu;
     return {
-        menuData,
+                    menuData,
     };
 };
 
