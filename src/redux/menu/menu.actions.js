@@ -154,7 +154,6 @@ export const setLayersIsVisible = (isVisible, parentId) => {
 }
 
 export const toggleSwitchesDisable = (isLoading) => {
-    console.log("Action isLoading = " + isLoading);
     return (
         {
             type: MENU_TOGGLE_SWITCHES_DISABLE,

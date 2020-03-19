@@ -364,7 +364,6 @@ class Sidebar extends Component {
             collapsedMenus,
         } = this.state;
         const { menuData, allSwitchesDisabled } = this.props;
-        console.log(allSwitchesDisabled);
         return (
             <div className="sidebar">
                 <div className="main-menu">
