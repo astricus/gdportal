@@ -6,7 +6,8 @@ import {
     MENU_CHANGE_DEFAULT_CLASSES,
     MENU_CHANGE_HAS_SUB_ITEM_STATUS,
     MENU_CHANGE_LAYER_IS_VISIBLE,
-    MENU_CHANGE_LAYERS_IS_VISIBLE
+    MENU_CHANGE_LAYERS_IS_VISIBLE,
+    MENU_TOGGLE_SWITCHES_DISABLE
 } from '../actions';
 
 export const changeSelectedMenuHasSubItems = (payload) => {
@@ -148,6 +149,16 @@ export const setLayersIsVisible = (isVisible, parentId) => {
         {
             type: MENU_CHANGE_LAYERS_IS_VISIBLE,
             payload: { isVisible, parentId }
+        }
+    )
+}
+
+export const toggleSwitchesDisable = (isLoading) => {
+    console.log("Action isLoading = " + isLoading);
+    return (
+        {
+            type: MENU_TOGGLE_SWITCHES_DISABLE,
+            payload: isLoading ? true : false
         }
     )
 }

@@ -363,7 +363,8 @@ class Sidebar extends Component {
             viewingParentMenu,
             collapsedMenus,
         } = this.state;
-        const { menuData } = this.props;
+        const { menuData, allSwitchesDisabled } = this.props;
+        console.log(allSwitchesDisabled);
         return (
             <div className="sidebar">
                 <div className="main-menu">
@@ -434,6 +435,7 @@ class Sidebar extends Component {
                                                     <Switch
                                                         className="custom-switch custom-switch-primary custom-switch-small"
                                                         checked={item.isVisible}
+                                                        disabled={allSwitchesDisabled}
                                                         onChange={(value, event) => this.handleLayersSwitch(value, event)}
                                                     />
                                                     <NavLink to={item.to}>
@@ -532,6 +534,7 @@ class Sidebar extends Component {
                                                                     <Switch
                                                                         className="custom-switch custom-switch-primary-inverse custom-switch-small"
                                                                         checked={sub.isVisible}
+                                                                        disabled={allSwitchesDisabled}
                                                                         onChange={(value, event) => this.handleSwitch(index, value, event)}
                                                                     />
                                                                     <NavLink to={sub.to} onClick={(value, event) => this.handleSwitch(index, value, event)}>
@@ -565,6 +568,7 @@ const mapStateToProps = ({ menu }) => {
         menuHiddenBreakpoint,
         menuClickCount,
         menuData,
+        allSwitchesDisabled,
         selectedMenuHasSubItems
     } = menu;
     return {
@@ -573,6 +577,7 @@ const mapStateToProps = ({ menu }) => {
         menuHiddenBreakpoint,
         menuClickCount,
         menuData,
+        allSwitchesDisabled,
         selectedMenuHasSubItems
     };
 };

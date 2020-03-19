@@ -1,28 +1,28 @@
 import React, { Component, Suspense } from 'react';
-import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
+// import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../layout/AppLayout';
 
-const Geoportal = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-geoportal" */ './geoportal')
-);
-const SecondMenu = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-second-menu" */ './second-menu')
-);
-const BlankPage = React.lazy(() =>
-  import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
-);
+// const Geoportal = React.lazy(() =>
+//   import(/* webpackChunkName: "viwes-geoportal" */ './geoportal')
+// );
+// const SecondMenu = React.lazy(() =>
+//   import(/* webpackChunkName: "viwes-second-menu" */ './second-menu')
+// );
+// const BlankPage = React.lazy(() =>
+//   import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
+// );
 
 class App extends Component {
   render() {
-    const { match } = this.props;
+    // const { match } = this.props;
 
     return (
       <AppLayout>
         <div className="dashboard-wrapper">
-          <Suspense fallback={<div className="loading" />}>
-            <Switch>
+          <Suspense fallback={<div className="loading" />}/>
+            {/* <Switch>
               <Redirect exact from={`${match.url}/`} to={`${match.url}/geoportal`} />
               <Route
                 path={`${match.url}/geoportal`}
@@ -37,8 +37,8 @@ class App extends Component {
                 render={props => <BlankPage {...props} />}
               />
               <Redirect to="/error" />
-            </Switch>
-          </Suspense>
+            </Switch> */}
+          {/* </Suspense> */}
         </div>
       </AppLayout>
     );
@@ -49,9 +49,10 @@ const mapStateToProps = ({ menu }) => {
   return { containerClassnames };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {}
-  )(App)
-);
+// export default withRouter(
+//   connect(
+//     mapStateToProps,
+//     {}
+//   )(App)
+// );
+export default connect(mapStateToProps,{})(App);

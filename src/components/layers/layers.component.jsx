@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { toggleSwitchesDisable } from '../../redux/actions';
 
 import MapData from '../map/map.component';
 
@@ -53,6 +54,7 @@ class Layers extends React.Component {
     };
 
     componentDidUpdate(prevProps) {
+        this.props.toggleSwitchesDisable(this.state.loading);
         if (this.props.menuData !== prevProps.menuData) {
             this.updateLayers();
         }
@@ -63,14 +65,14 @@ class Layers extends React.Component {
     }
 };
 
-const mapStateToProps = ({ menu}) => {
+const mapStateToProps = ({ menu }) => {
     const {
-                    menuData
-                } = menu;
+        menuData
+    } = menu;
     return {
-                    menuData,
+        menuData,
     };
 };
 
 
-export default connect(mapStateToProps)(Layers);
+export default connect(mapStateToProps, {toggleSwitchesDisable})(Layers);

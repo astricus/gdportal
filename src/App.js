@@ -13,9 +13,9 @@ import AppLocale from './lang';
 // import { isMultiColorActive } from './constants/defaultValues';
 import { getDirection } from './helpers/Utils';
 
-const ViewMain = React.lazy(() =>
-  import(/* webpackChunkName: "views" */ './views')
-);
+// const ViewMain = React.lazy(() =>
+//   import(/* webpackChunkName: "views" */ './views')
+// );
 const ViewApp = React.lazy(() =>
   import(/* webpackChunkName: "views-app" */ './views/app')
 );
@@ -58,7 +58,8 @@ class App extends Component {
               <Router>
                 <Switch>
                   <Route
-                    path="/app"
+                    path="/"
+                    exact
                     render={props => <ViewApp {...props} />}
                   />
                   <Route
@@ -66,11 +67,11 @@ class App extends Component {
                     exact
                     render={props => <ViewError {...props} />}
                   />
-                  <Route
+                  {/* <Route
                     path="/"
                     exact
                     render={props => <ViewMain {...props} />}
-                  />
+                  /> */}
                   <Redirect to="/error" />
                 </Switch>
               </Router>

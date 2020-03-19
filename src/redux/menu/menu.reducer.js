@@ -7,7 +7,8 @@ import {
     MENU_CHANGE_DEFAULT_CLASSES,
     MENU_CHANGE_HAS_SUB_ITEM_STATUS,
     MENU_CHANGE_LAYER_IS_VISIBLE,
-    MENU_CHANGE_LAYERS_IS_VISIBLE
+    MENU_CHANGE_LAYERS_IS_VISIBLE,
+    MENU_TOGGLE_SWITCHES_DISABLE
 } from '../actions';
 
 import { defaultMenuType, subHiddenBreakpoint, menuHiddenBreakpoint } from '../../constants/defaultValues';
@@ -22,6 +23,7 @@ const INIT_STATE = {
     menuHiddenBreakpoint,
     menuClickCount: 0,
     menuData: menuData,
+    allSwitchesDisabled: true,
     selectedMenuHasSubItems: defaultMenuType === "menu-default" //if you use menu-sub-hidden as default menu type, set value of this variable to false
 };
 
@@ -69,6 +71,11 @@ export default (state = INIT_STATE, action) => {
         case MENU_CHANGE_LAYERS_IS_VISIBLE:
             return Object.assign({}, state, {
                 menuData: changeLayersIsVisible(state.menuData, action.payload)
+            })
+
+        case MENU_TOGGLE_SWITCHES_DISABLE:
+            return Object.assign({}, state, {
+                allSwitchesDisabled: action.payload
             })
 
         default: return { ...state };
